@@ -1,17 +1,37 @@
-import logo from './logo.svg';
-import './App.less';
+import './App.css';
 import React from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import { Typography } from '@material-ui/core';
 
 function App() {
   return (
-<NavigationBar 
-    title={"Closet Brewing Project"}
-    options={[
-        {text: "Home", onClick: o=>console.log(o)},
-        {text: "Beers", onClick: o=>console.log(o)},
-        {text: "Shop", onClick: o=>console.log(o)}
-    ]}> </NavigationBar>
+    <Router>
+      <NavigationBar 
+        title={"Closet Brewing Project"}
+        options={[
+            {text: "Home", link: "/"},
+            {text: "Beers", link: "/beers"},
+            {text: "Shop", link: "/shop"}
+        ]}>
+      </NavigationBar>
+
+        <Switch>
+          <Route path="/beers">
+            <Typography>{"BEERS"}</Typography>
+          </Route>
+          <Route path="/shop">
+            <Typography>{"SHOP"}</Typography>
+          </Route>
+          <Route path="/">
+            <Typography>{"HOME"}</Typography>
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

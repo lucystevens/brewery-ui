@@ -1,0 +1,16 @@
+@media only screen and (max-width: 600px) {
+  .full-menu {
+    display: none!important;
+  }
+  .small-menu {
+    display: flex!important;
+  }
+}
+
+.full-menu {
+  display: flex;
+}
+.small-menu {
+  display: none;
+}
+
