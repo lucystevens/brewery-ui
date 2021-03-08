@@ -12,7 +12,6 @@ function App() {
   return (
     <Router>
       <NavigationBar 
-        style="dark"
         options={[
             {text: "Home", link: "/"},
             {text: "Beers", link: "/beers"},

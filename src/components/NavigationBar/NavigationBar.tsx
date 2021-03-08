@@ -6,7 +6,6 @@ import './NavigationBar.css';
 
 
 interface NavigationBarProps {
-    style?: "light" | "dark"
     options: NavigationOption[]
 }
 
@@ -16,7 +15,7 @@ export interface NavigationOption {
     onClick?: (option: NavigationOption) => void
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({options, children, style}) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   let history = useHistory()
@@ -31,12 +30,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children, style})
       setMenuOpen(!menuOpen)
     }
 
-    const getClasses = () => {
-      return "navigation-bar " + (style? style : "light")
-    }
   
     return (
-    <Box className={getClasses()}
+    <Box className={"navigation-bar"}
         display="flex"
         p={1}
         alignItems="center" 

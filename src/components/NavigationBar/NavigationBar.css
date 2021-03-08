@@ -1,15 +1,7 @@
 .navigation-bar {
-  padding-right: 1rem
-}
-
-.navigation-bar.dark {
+  padding-right: 1rem;
   background-color: black;
   color: white;
-}
-
-.navigation-bar.light {
-  background-color: rgb(238, 238, 238);
-  color: black;
 }
 
 @media only screen and (max-width: 768px) {
@@ -32,11 +24,6 @@
   font-size: 3rem;
   font-family: "Crossfit-Bold";
   padding: 0rem 2rem;
-  color: white;
-}
-
-.small-menu .MuiIconButton-label {
-  font-size: 3rem;
   color: white;
 }
 
