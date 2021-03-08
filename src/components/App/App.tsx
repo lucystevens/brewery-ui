@@ -6,18 +6,21 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 function App() {
   return (
     <Router>
       <NavigationBar 
-        title={"Closet Brewing Project"}
+        style="dark"
         options={[
             {text: "Home", link: "/"},
             {text: "Beers", link: "/beers"},
             {text: "Shop", link: "/shop"}
         ]}>
+          <Box display={"flex"}>
+            <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+          </Box>
       </NavigationBar>
 
         <Switch>

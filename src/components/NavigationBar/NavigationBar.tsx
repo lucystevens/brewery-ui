@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Box, Button, Drawer, IconButton, List, ListItem, ListItemText, Typography } from "@material-ui/core"
+import { Box, Button, Drawer, IconButton, List, ListItem, ListItemText } from "@material-ui/core"
 import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory } from "react-router-dom";
 import './NavigationBar.css';
 
 
 interface NavigationBarProps {
-    title: string
+    style?: "light" | "dark"
     options: NavigationOption[]
 }
 
@@ -16,7 +16,7 @@ export interface NavigationOption {
     onClick?: (option: NavigationOption) => void
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({title, options}) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({options, children, style}) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   let history = useHistory()
@@ -30,23 +30,27 @@ const NavigationBar: React.FC<NavigationBarProps> = ({title, options}) => {
     const toggleMenu = () => {
       setMenuOpen(!menuOpen)
     }
+
+    const getClasses = () => {
+      return "navigation-bar " + (style? style : "light")
+    }
   
     return (
-    <Box className="navigation-bar"
+    <Box className={getClasses()}
         display="flex"
-        bgcolor="grey.200"
-        p={2}
+        p={1}
         alignItems="center" 
         justifyContent="space-between">
 
-        <Box className={"title"} display="flex">
-          <Typography>{title}</Typography>
+        <Box display="flex" alignItems="center" p={1}
+        justifyContent="space-between">
+          {children}
         </Box>
 
         <Box className="full-menu">
             {options.map(option => 
                 <Button
-                    color="primary"
+                    className={"nav-option"}
                     key={option.text}
                     onClick={() => handleOnClick(option)}>{option.text}
                 </Button>
@@ -55,13 +59,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({title, options}) => {
 
         <Box className="small-menu" >
           <IconButton onClick={toggleMenu}>
-            <MenuIcon />
+            <MenuIcon style={{fontSize: "3rem", color: "white"}} />
           </IconButton>
           <Drawer anchor={"right"} open={menuOpen} onClose={() => setMenuOpen(false)}>
             <List>
               {options.map((option) => (
                 <ListItem button onClick={() => handleOnClick(option)} key={option.text}>
-                  <ListItemText primary={option.text} />
+                  <ListItemText className={"nav-option"} primary={option.text.toUpperCase()} />
                 </ListItem>
               ))}
             </List>

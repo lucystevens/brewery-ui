@@ -1,4 +1,18 @@
-@media only screen and (max-width: 600px) {
+.navigation-bar {
+  padding-right: 1rem
+}
+
+.navigation-bar.dark {
+  background-color: black;
+  color: white;
+}
+
+.navigation-bar.light {
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
+
+@media only screen and (max-width: 768px) {
   .full-menu {
     display: none!important;
   }
@@ -12,5 +26,22 @@
 }
 .small-menu {
   display: none;
+}
+
+.full-menu .nav-option.MuiButton-text {
+  font-size: 3rem;
+  font-family: "Crossfit-Bold";
+  padding: 0rem 2rem;
+  color: white;
+}
+
+.small-menu .MuiIconButton-label {
+  font-size: 3rem;
+  color: white;
+}
+
+.nav-option .MuiTypography-root {
+  font-size: 2rem;
+  font-family: "Crossfit-Bold";
 }
 
