@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import Carousel from 'react-material-ui-carousel';
-import Beer from '../../../models/Beer';
+import { useService } from '../../../hooks/ApiHook';
 import BeerService from '../../../services/BeerService';
 import { setupBeerServiceMock } from '../../../services/BeerService/MockBeerService';
 import CarouselElement from './CarouselElement';
@@ -8,29 +8,22 @@ import CarouselElement from './CarouselElement';
 
 const HomePage: React.FC = () => {
 
-    const [isLoading, setLoading] = useState(true);
-    const [beers, setBeers] = useState<Beer[]>([]);
+    const serviceFn = useCallback(() => {
+        setupBeerServiceMock();
+        return new BeerService().getLatestReleases();
+    }, []);
 
-    useEffect(() => {
-        setupBeerServiceMock()
-        setLoading(true);
-
-        new BeerService()
-          .getLatestReleases()
-          .then(({ data }) => setBeers(data))
-          .catch((e) => console.error(e))
-          .finally(() => setLoading(false));
-      }, []);
+    const [{ data, isLoading, errors }] = useService(serviceFn);
 
     return (
         <>
-        { !isLoading && <Carousel
+        { !isLoading && data && <Carousel
             autoPlay={false}
             animation={"slide"}
             indicators={true}
             cycleNavigation={true}
             navButtonsAlwaysVisible={true}>
-                { beers.map(beer => <CarouselElement beer={beer} key={beer.slug} />) }
+                { data.map(beer => <CarouselElement beer={beer} key={beer.slug} />) }
             </Carousel> }
         </>
     );

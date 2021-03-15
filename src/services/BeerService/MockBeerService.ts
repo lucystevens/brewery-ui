@@ -25,6 +25,6 @@ const mockBeers: Beer[] = [
 
 export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
-  mock.onGet(`/api/beer/latest-releases`).reply(200, mockBeers);
+  mock.onGet(`/api/beer/latest-releases`).reply(200, { success: true, data: mockBeers });
   return mock;
 };
