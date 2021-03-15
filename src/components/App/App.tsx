@@ -1,14 +1,21 @@
 import './App.css';
-import React from 'react';
 import NavigationBar from '../NavigationBar';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useParams
 } from "react-router-dom";
 import { Box, Typography } from '@material-ui/core';
+import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
+
+  function BeerPage() {
+    let { slug } = useParams<{slug: string}>();
+    return <Typography>Now showing beer {slug}</Typography>;
+  }
+
   return (
     <Router>
       <NavigationBar 
@@ -23,6 +30,9 @@ function App() {
       </NavigationBar>
 
         <Switch>
+          <Route path="/beers/:slug">
+            <BeerPage />
+          </Route>
           <Route path="/beers">
             <Typography>{"BEERS"}</Typography>
           </Route>
@@ -30,7 +40,7 @@ function App() {
             <Typography>{"SHOP"}</Typography>
           </Route>
           <Route path="/">
-            <Typography>{"HOME"}</Typography>
+            <HomePage></HomePage>
           </Route>
         </Switch>
     </Router>
