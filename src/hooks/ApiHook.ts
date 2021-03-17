@@ -2,25 +2,28 @@ import { AxiosResponse } from 'axios';
 import { useState, useEffect } from 'react'
 import ServerResponse from '../models/ServerResponse';
 
-export const useService = <T,>(serviceFn: () => Promise<AxiosResponse<ServerResponse<T>>>) => {
+export const useService = <T,>(
+    makeRequest: () => Promise<AxiosResponse<ServerResponse<T>>>,
+    handleErrors: (errors: any) => void
+    ) => {
+
     const [isLoading, setLoading] = useState(false);
     const [data, setData] = useState<T>();
-    const [errors, setErrors] = useState();
    
     useEffect(() => {
-      serviceFn()
+        makeRequest()
         .then(({ data }) => {
             data.success?
                 setData(data.data):
-                setErrors(data.errors);
+                handleErrors(data.errors);
         })
         .catch((e) => {
-            setErrors(e);
+            handleErrors(e);
         })
         .finally(() => {
             setLoading(false);
         });
-    }, [serviceFn]);
+    }, [makeRequest, handleErrors]);
    
-    return [{ data, isLoading, errors }];
+    return [{ data, isLoading }];
   }

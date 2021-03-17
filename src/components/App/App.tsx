@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Box, Typography } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
+import BeersPage from '../pages/BeersPage/BeersPage';
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
             <BeerPage />
           </Route>
           <Route path="/beers">
-            <Typography>{"BEERS"}</Typography>
+            <BeersPage></BeersPage>
           </Route>
           <Route path="/shop">
             <Typography>{"SHOP"}</Typography>

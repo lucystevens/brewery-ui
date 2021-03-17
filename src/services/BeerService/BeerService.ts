@@ -7,7 +7,7 @@ export class BeerService {
         return axios.get(`/api/beer/latest-releases`);
     }
 
-    getBeers(): Promise<AxiosResponse<ServerResponse<Beer[]>>> {
-        return axios.get(`/api/beer`);
+    getBeers(authCode: string): Promise<AxiosResponse<ServerResponse<Beer[]>>> {
+        return axios.get(`/api/beer?code=${authCode}`);
     }
 }

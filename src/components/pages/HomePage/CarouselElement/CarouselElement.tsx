@@ -25,7 +25,7 @@ const CarouselElement: React.FC<CarouselElementProps> = ({ beer }) => {
         <Box style={styles} className={"root-img-bg"}>
             <Box className={"container"} display={"flex"}>
                 <Typography variant={"h1"} className={"text name"}>{beer.name}</Typography>
-                <Typography variant={"h3"} className={"text tag-line"}>{beer.tagLine}</Typography>
+                <Typography variant={"h3"} className={"text tag-line"}>{beer.style}</Typography>
                 <Button className={"button"} variant="outlined" onClick={handleOnClick}>Check it out</Button>
             </Box>
         </Box>

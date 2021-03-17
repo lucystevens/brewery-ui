@@ -8,12 +8,16 @@ import CarouselElement from './CarouselElement';
 
 const HomePage: React.FC = () => {
 
-    const serviceFn = useCallback(() => {
+    const makeRequest = useCallback(() => {
         setupBeerServiceMock();
         return new BeerService().getLatestReleases();
     }, []);
 
-    const [{ data, isLoading, errors }] = useService(serviceFn);
+    const handleError = useCallback((error) => {
+        console.error(error)
+    }, []);
+
+    const [{ data, isLoading }] = useService(makeRequest, handleError);
 
     return (
         <>

@@ -4,8 +4,8 @@ interface Beer {
     name: string;
     abv: number;
     logoUrl: string;
-    coverImageUrl: string;
-    tagLine: string;
+    coverImageUrl?: string;
+    style: string;
 }
 
 export default Beer;
