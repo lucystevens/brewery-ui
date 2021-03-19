@@ -8,6 +8,6 @@ export class BeerService {
     }
 
     getBeers(authCode: string): Promise<AxiosResponse<ServerResponse<Beer[]>>> {
-        return axios.get(`/api/beer?code=${authCode}`);
+        return axios.get(`/api/beer`, { params: { code: authCode } });
     }
 }

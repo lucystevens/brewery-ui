@@ -1,12 +1,19 @@
 import React from 'react'
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
+import { useHistory } from 'react-router-dom';
 
 export interface BeerDetailsCardProps {
     beer: Beer;
 }
 
 const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
+
+  const history = useHistory();
+
+  const handleOnClick = () => {
+      history.push(`/beers/${beer.slug}`)
+  }
 
     return (
         <Card>
@@ -26,9 +33,14 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Add to cart
+          <Button size="small" color="primary" onClick={handleOnClick}>
+            More info
           </Button>
+          {beer.canBuy && 
+            <Button size="small" color="primary">
+              Add to cart
+            </Button>
+          }
         </CardActions>
       </Card>
     );

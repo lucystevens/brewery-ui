@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import ServerResponse from '../models/ServerResponse';
 
 export const useService = <T,>(
@@ -27,3 +28,15 @@ export const useService = <T,>(
    
     return [{ data, isLoading }];
   }
+
+export const useQuery = () => new URLSearchParams(useLocation().search);
+
+export const useAccessCode = () => {
+    const STORAGE_KEY = "cbp_access_code";
+    const queryParams = useQuery()
+    const code =  queryParams.get("code");
+    if(code){
+        localStorage.setItem(STORAGE_KEY,  code);
+    }
+    return localStorage.getItem(STORAGE_KEY) || "";
+}

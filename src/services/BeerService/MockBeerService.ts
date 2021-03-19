@@ -51,13 +51,16 @@ const mockBeers: Beer[] = [
         abv: 4.8,
         logoUrl: "/images/beers/logos/mieterinnen.png",
         coverImageUrl: "/images/beers/mieterinnen/cover.jpg",
-        style: "Crisp Helles Lager"
+        style: "Crisp Helles Lager",
+        canBuy: true
     }
 ]
 
 export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
   mock.onGet(`/api/beer/latest-releases`).reply(200, { success: true, data: mockBeers.filter(beer => beer.coverImageUrl) });
-  mock.onGet(`/api/beer?code=valid`).reply(200, { success: true, data: mockBeers });
+  mock.onGet(`/api/beer`, { params: { code: "valid" } }).reply(200, { success: true, data: mockBeers });
+  mock.onGet(`/api/beer`, { params: { code: "invalid" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.canBuy) });
+  mock.onGet(`/api/beer`, { params: { code: "" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.canBuy) });
   return mock;
 };
