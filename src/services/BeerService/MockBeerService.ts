@@ -52,7 +52,18 @@ const mockBeers: Beer[] = [
         logoUrl: "/images/beers/logos/mieterinnen.png",
         coverImageUrl: "/images/beers/mieterinnen/cover.jpg",
         style: "Crisp Helles Lager",
-        canBuy: true
+        available: true,
+        price: 3.00
+    },
+    {
+        id: 7,
+        slug: "lost-in-the-sauce",
+        name: "Lost in the Sauce",
+        abv: 6.8,
+        logoUrl: "/images/beers/logos/lost-in-the-sauce.png",
+        style: "Juicy New England IPA",
+        available: true,
+        price: 3.00
     }
 ]
 
@@ -60,7 +71,7 @@ export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
   mock.onGet(`/api/beer/latest-releases`).reply(200, { success: true, data: mockBeers.filter(beer => beer.coverImageUrl) });
   mock.onGet(`/api/beer`, { params: { code: "valid" } }).reply(200, { success: true, data: mockBeers });
-  mock.onGet(`/api/beer`, { params: { code: "invalid" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.canBuy) });
-  mock.onGet(`/api/beer`, { params: { code: "" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.canBuy) });
+  mock.onGet(`/api/beer`, { params: { code: "invalid" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.available) });
+  mock.onGet(`/api/beer`, { params: { code: "" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.available) });
   return mock;
 };

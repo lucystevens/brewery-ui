@@ -6,7 +6,8 @@ interface Beer {
     logoUrl: string;
     coverImageUrl?: string;
     style: string;
-    canBuy?: boolean;
+    available?: boolean;
+    price?: number;
 }
 
 export default Beer;

@@ -36,7 +36,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
           <Button size="small" color="primary" onClick={handleOnClick}>
             More info
           </Button>
-          {beer.canBuy && 
+          {beer.available && 
             <Button size="small" color="primary">
               Add to cart
             </Button>
