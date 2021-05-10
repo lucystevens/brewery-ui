@@ -11,6 +11,10 @@ const BeersPage: React.FC = () => {
 
     let code = useAccessCode()
 
+    const onFilterChange = useCallback((beers: Beer[]) => {
+        setFilteredData(beers)
+    }, []);
+
     const makeRequest = useCallback(() => {
         setupBeerServiceMock();
         return new BeerService().getBeers(code);
@@ -32,7 +36,7 @@ const BeersPage: React.FC = () => {
         <Grid container style={{padding:"1rem"}}>
             <Grid item xs={3} className="filter">
                 {!isLoading && data && 
-                    <BeerFilter beers={data} onFilterChange={b => setFilteredData(b)}/>
+                    <BeerFilter beers={data} onFilterChange={onFilterChange}/>
                 }
             </Grid>
             <Grid item xs={9} className="beers">
