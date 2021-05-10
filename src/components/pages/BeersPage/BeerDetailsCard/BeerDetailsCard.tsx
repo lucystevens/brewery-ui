@@ -28,7 +28,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
               {beer.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {beer.abv}% {beer.style}
+              {beer.abv}% {beer.description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -36,7 +36,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
           <Button size="small" color="primary" onClick={handleOnClick}>
             More info
           </Button>
-          {beer.available && 
+          {beer.isAvailable && 
             <Button size="small" color="primary">
               Add to cart
             </Button>

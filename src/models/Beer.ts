@@ -1,3 +1,5 @@
+import BeerStyle from "./BeerStyle";
+
 interface Beer {
     id: number;
     slug: string;
@@ -5,9 +7,11 @@ interface Beer {
     abv: number;
     logoUrl: string;
     coverImageUrl?: string;
-    style: string;
-    available?: boolean;
+    description: string;
+    style: BeerStyle;
+    isAvailable?: boolean;
     price?: number;
+    tags: string[]
 }
 
 export default Beer;

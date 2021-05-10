@@ -1,6 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Beer from '../../models/Beer';
+import BeerStyle from '../../models/BeerStyle';
 import { TeamMember } from '../../models/TeamMember';
 
 const mockBeers: Beer[] = [
@@ -10,7 +11,9 @@ const mockBeers: Beer[] = [
         name: "Kiwi Killer",
         abv: 5.0,
         logoUrl: "/images/beers/logos/kiwi-killer.jpg",
-        style: "Kiwi Pale Ale"
+        description: "Kiwi Pale Ale",
+        style: BeerStyle.PALE_ALE,
+        tags: ["fruited", "pale ale", "kiwi"]
     },
     {
         id: 2,
@@ -18,7 +21,9 @@ const mockBeers: Beer[] = [
         name: "Rye Do",
         abv: 4.2,
         logoUrl: "/images/beers/logos/rye-do.png",
-        style: "Spiced Rye Wedding Beer"
+        description: "Spiced Rye Wedding Beer",
+        style: BeerStyle.IPA,
+        tags: ["rye", "ipa", "wedding beer"]
     },
     {
         id: 3,
@@ -26,7 +31,9 @@ const mockBeers: Beer[] = [
         name: "Boston Bruiser",
         abv: 6.6,
         logoUrl: "/images/beers/logos/boston-bruiser.png",
-        style: "New England IPA"
+        description: "New England IPA",
+        style: BeerStyle.NEIPA,
+        tags: ["neipa", "hazy", "hoppy", "ipa"]
     },
     {
         id: 4,
@@ -35,7 +42,9 @@ const mockBeers: Beer[] = [
         abv: 7.2,
         logoUrl: "/images/beers/logos/seeing-double.jpg",
         coverImageUrl: "/images/beers/seeing-double/cover.jpg",
-        style: "Hazy DDH IPA"
+        description: "Hazy DDH DIPA",
+        style: BeerStyle.NEIPA,
+        tags: ["neipa", "hazy", "hoppy", "ipa", "dipa"]
     },
     {
         id: 5,
@@ -43,7 +52,9 @@ const mockBeers: Beer[] = [
         name: "Berried Treasure",
         abv: 5.3,
         logoUrl: "/images/beers/logos/berried-treasure.png",
-        style: "Mixed Berry Sour"
+        description: "Mixed Berry Sour",
+        style: BeerStyle.SOUR,
+        tags: ["sour", "raspberry", "strawberry", "blackberry", "fruited"]
     },
     {
         id: 6,
@@ -52,8 +63,10 @@ const mockBeers: Beer[] = [
         abv: 4.8,
         logoUrl: "/images/beers/logos/mieterinnen.png",
         coverImageUrl: "/images/beers/mieterinnen/cover.jpg",
-        style: "Crisp Helles Lager",
-        available: true,
+        description: "Crisp Helles Lager",
+        style: BeerStyle.LAGER,
+        tags: ["helles", "crisp", "lager", "german"],
+        isAvailable: true,
         price: 3.00
     },
     {
@@ -62,8 +75,10 @@ const mockBeers: Beer[] = [
         name: "Lost in the Sauce",
         abv: 6.8,
         logoUrl: "/images/beers/logos/lost-in-the-sauce.png",
-        style: "Juicy New England IPA",
-        available: true,
+        description: "Juicy New England IPA",
+        style: BeerStyle.NEIPA,
+        tags: ["neipa", "hazy", "hoppy", "ipa", "juicy"],
+        isAvailable: true,
         price: 3.00
     }
 ]
@@ -93,8 +108,8 @@ export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
   mock.onGet(`/api/beer/latest-releases`).reply(200, { success: true, data: mockBeers.filter(beer => beer.coverImageUrl) });
   mock.onGet(`/api/beer`, { params: { code: "valid" } }).reply(200, { success: true, data: mockBeers });
-  mock.onGet(`/api/beer`, { params: { code: "invalid" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.available) });
-  mock.onGet(`/api/beer`, { params: { code: "" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.available) });
+  mock.onGet(`/api/beer`, { params: { code: "invalid" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.isAvailable) });
+  mock.onGet(`/api/beer`, { params: { code: "" } }).reply(200, { success: true, data: mockBeers.filter(beer => !beer.isAvailable) });
   mock.onGet(`/api/team`).reply(200, { success: true, data: mockTeam });
   return mock;
 };
