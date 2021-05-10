@@ -1,7 +1,7 @@
-import React, { ChangeEventHandler, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextField, Typography } from '@material-ui/core';
-import Beer from '../../../../models/Beer';
-import { Slider } from '@material-ui/core';
+import Beer from 'models/Beer';
+import { distinct } from 'utils/ArrayUtils';
 
 export interface BeerFilterProps {
     beers: Beer[];
@@ -16,10 +16,15 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
       setSearchTerm(event.target.value.toLowerCase())
     }
 
+    const getAllTags = () => {
+      return distinct(
+        beers.flatMap(b => b.tags || []));
+    }
+
     useEffect(() => {
       onFilterChange(beers.filter(
         b => !searchTerm || b.name.toLowerCase().includes(searchTerm)))
-  }, [searchTerm, beers]);
+  }, [searchTerm, beers, onFilterChange]);
 
     return (
       <form noValidate>
