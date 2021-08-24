@@ -33,7 +33,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
     const location = useLocation();
     
     const getOptionClasses = (option: NavigationOption): string => {
-      return "nav-option" + (location.pathname == option.link? " selected" : "")
+      return "nav-option" + (location.pathname === option.link? " selected" : "")
     }
 
   
