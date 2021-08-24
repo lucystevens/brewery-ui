@@ -27,6 +27,10 @@
   color: white;
 }
 
+.nav-option.MuiButton-text.selected {
+  color: #bbbbbb;
+}
+
 .nav-option .MuiTypography-root {
   font-size: 2rem;
   font-family: "Crossfit-Bold";

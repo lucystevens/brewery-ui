@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Drawer, IconButton, List, ListItem, ListItemText } from "@material-ui/core"
 import MenuIcon from '@material-ui/icons/Menu';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import './NavigationBar.css';
 
 
@@ -30,6 +30,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
       setMenuOpen(!menuOpen)
     }
 
+    const location = useLocation();
+    
+    const getOptionClasses = (option: NavigationOption): string => {
+      return "nav-option" + (location.pathname == option.link? " selected" : "")
+    }
+
   
     return (
     <Box className={"navigation-bar"}
@@ -46,7 +52,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
         <Box className="full-menu">
             {options.map(option => 
                 <Button
-                    className={"nav-option"}
+                    className={getOptionClasses(option)}
                     key={option.text}
                     onClick={() => handleOnClick(option)}>{option.text}
                 </Button>
@@ -61,7 +67,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
             <List>
               {options.map((option) => (
                 <ListItem button onClick={() => handleOnClick(option)} key={option.text}>
-                  <ListItemText className={"nav-option"} primary={option.text.toUpperCase()} />
+                  <ListItemText 
+                    className={getOptionClasses(option)}
+                    primary={option.text.toUpperCase()} />
                 </ListItem>
               ))}
             </List>
