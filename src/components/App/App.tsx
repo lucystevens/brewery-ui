@@ -9,6 +9,7 @@ import {
 import { Box, Typography } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import BeersPage from '../pages/BeersPage/BeersPage';
+import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <NavigationBar 
         options={[
             {text: "Home", link: "/"},
+            {text: "Blog", link: "/blog"},
             {text: "Beers", link: "/beers"},
             {text: "Shop", link: "/shop"}
         ]}>
@@ -37,8 +39,11 @@ function App() {
           <Route path="/beers">
             <BeersPage></BeersPage>
           </Route>
+          <Route path="/blog">
+            <Typography>{"BLOG"}</Typography>
+          </Route>
           <Route path="/shop">
-            <Typography>{"SHOP"}</Typography>
+            <ComingSoonPage></ComingSoonPage>
           </Route>
           <Route path="/">
             <HomePage></HomePage>
