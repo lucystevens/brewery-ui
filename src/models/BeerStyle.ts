@@ -3,7 +3,8 @@ export enum BeerStyle {
     IPA = "IPA",
     NEIPA = "New England IPA",
     SOUR = "Sour",
-    LAGER = "Lager"
+    LAGER = "Lager",
+    STOUT = "Stout"
 }
 
 export default BeerStyle;

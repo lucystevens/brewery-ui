@@ -6,7 +6,6 @@ interface Beer {
     name: string;
     abv: number;
     logoUrl: string;
-    coverImageUrl?: string;
     description: string;
     style: BeerStyle;
     isAvailable?: boolean;
