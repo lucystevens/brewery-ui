@@ -15,7 +15,16 @@ const HomePage: React.FC = () => {
                     Edinburgh's Smallest Brewery*
                 </Typography>
                 <Typography className="intro" variant={"h4"}>
-                    Established in 2018, in a small closet in a Leith flat, our mission has always been quality over quantity. 
+                    We established Closet Brewing Project in 2018 with
+                    nothing but a cupboard, a bucket and dreams of brewing
+                    a quality beer that even the most ale-averse drinker
+                    could enjoy as much as a beer connoisseur.
+                    Since then we've grown out of the cupboard and the
+                    bucket, to some proper kit and a spare bedroom but
+                    our mission stays the same:
+                </Typography>
+                <Typography className="motto" variant={"h3"}>
+                    Drink good beer, with good people.
                 </Typography>
             </Box>
         </Container>
