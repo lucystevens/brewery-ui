@@ -1,0 +1,20 @@
+.homepage-box {
+    text-align: center;
+    padding-top: 20vh;
+
+    .MuiTypography-h1.title {
+        font-family: "Crossfit-Bold";
+    }
+
+    .MuiTypography-h2.subtitle {
+        font-family: 'Oswald', sans-serif;
+        color: #434343;
+        font-style: italic;
+    }
+
+    .MuiTypography-h4.intro {
+        margin-top: 2rem;
+        font-family: 'Oswald', sans-serif;
+    }
+
+}

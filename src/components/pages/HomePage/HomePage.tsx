@@ -1,35 +1,24 @@
-import React, { useCallback } from 'react'
-import Carousel from 'react-material-ui-carousel';
-import { useService } from '../../../hooks/ApiHook';
-import BeerService from '../../../services/BeerService';
-import { setupBeerServiceMock } from '../../../services/BeerService/MockBeerService';
-import CarouselElement from './CarouselElement';
+import { Box, Container, Typography } from '@material-ui/core';
+import React from 'react'
+import './HomePage.scss'
 
 
 const HomePage: React.FC = () => {
 
-    const makeRequest = useCallback(() => {
-        setupBeerServiceMock();
-        return new BeerService().getLatestReleases();
-    }, []);
-
-    const handleError = useCallback((error) => {
-        console.error(error)
-    }, []);
-
-    const [{ data, isLoading }] = useService(makeRequest, handleError);
-
     return (
-        <>
-        { !isLoading && data && <Carousel
-            autoPlay={false}
-            animation={"slide"}
-            indicators={true}
-            cycleNavigation={true}
-            navButtonsAlwaysVisible={true}>
-                { data.map(beer => <CarouselElement beer={beer} key={beer.slug} />) }
-            </Carousel> }
-        </>
+        <Container>
+            <Box className="homepage-box">
+                <Typography className="title" variant={"h1"}>
+                    This is Closet Brewing Project
+                </Typography>
+                <Typography className="subtitle" variant={"h2"}>
+                    Edinburgh's Smallest Brewery*
+                </Typography>
+                <Typography className="intro" variant={"h4"}>
+                    Established in 2018, in a small closet in a Leith flat, our mission has always been quality over quantity. 
+                </Typography>
+            </Box>
+        </Container>
     );
 
 };
