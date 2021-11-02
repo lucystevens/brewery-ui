@@ -10,6 +10,7 @@ import { Checkbox } from '@material-ui/core';
 import FilterQuality from 'models/FilterQuality';
 import BeerStyle from 'models/BeerStyle';
 import { useCallback } from 'react';
+import './BeerFilter.scss'
 
 export interface BeerFilterProps {
     beers: Beer[];
