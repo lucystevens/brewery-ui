@@ -29,7 +29,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
             </Typography>
             <Stack className="tags" direction="row" spacing={1}>
               {beer.tags.map(tag => 
-                <Chip label={tag} color="info" />
+                <Chip label={tag} color="info" key={tag}/>
               )}
             </Stack>
           </CardContent>

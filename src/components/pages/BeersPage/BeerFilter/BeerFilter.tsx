@@ -20,13 +20,21 @@ export interface BeerFilterProps {
 const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
 
   const [searchTerm, setSearchTerm] = useState<string>()
+  const [selectedStyles, setSelectedStyles] = useState(new Set())
 
     const onSearchTermChanged = (event: any) => {
       setSearchTerm(event.target.value.toLowerCase())
     }
 
     const handleTagSelected = (event: any) => {
-      console.log(event.target.name + " " + event.target.checked)
+      let updatedStyles = selectedStyles;
+      if(event.target.checked){
+        updatedStyles.add(event.target.name)
+      }
+      else {
+        updatedStyles.delete(event.target.name)
+      }
+      setSelectedStyles(updatedStyles)
     }
 
     const getAllTags = (): FilterQuality[] => {
@@ -63,8 +71,9 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
 
     const applyFilters = useCallback((beers: Beer[]): Beer[] => {
       return beers.filter(
-        b => !searchTerm || b.name.toLowerCase().includes(searchTerm))
-    }, [searchTerm]);
+        b => (!searchTerm || b.name.toLowerCase().includes(searchTerm))
+          && (selectedStyles.size == 0 || selectedStyles.has(b.style)))
+    }, [searchTerm, selectedStyles]);
 
     useEffect(() => {
       onFilterChange(applyFilters(beers))
@@ -85,8 +94,8 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
             <FormLabel component="label">Styles</FormLabel>
             <FormGroup>
               {getAllStyles().map(style => 
-                <FormControlLabel
-                  control={<Checkbox onChange={handleTagSelected} key={style.key} name={style.name} />}
+                <FormControlLabel key={style.key}
+                  control={<Checkbox onChange={handleTagSelected} name={style.name} />}
                   label={`${style.name} (${style.count})`}/>)
               }
             </FormGroup>
