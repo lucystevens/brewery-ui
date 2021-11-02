@@ -1,4 +1,5 @@
 import { Grid } from '@material-ui/core';
+import { FilterSharp } from '@material-ui/icons';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useAccessCode, useService } from '../../../hooks/ApiHook';
 import Beer from '../../../models/Beer';
@@ -10,10 +11,6 @@ import BeerFilter from './BeerFilter/BeerFilter';
 const BeersPage: React.FC = () => {
 
     let code = useAccessCode()
-
-    const onFilterChange = useCallback((beers: Beer[]) => {
-        setFilteredData(beers)
-    }, []);
 
     const makeRequest = useCallback(() => {
         setupBeerServiceMock();
@@ -30,6 +27,12 @@ const BeersPage: React.FC = () => {
 
     useEffect(() => {
         setFilteredData(data)
+    }, [data]);
+
+    const onFilterChange = useCallback((filters: ((beer: Beer) => boolean)[]) => {
+        setFilteredData(data?.filter(beer => 
+            filters.filter(filter => !filter(beer)).length == 0
+        ))
     }, [data]);
 
     return (

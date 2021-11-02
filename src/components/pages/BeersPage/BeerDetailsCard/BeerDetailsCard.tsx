@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
@@ -27,11 +27,6 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
             <Typography variant="body2" color="textSecondary" component="p">
               {beer.abv}% {beer.description}
             </Typography>
-            <Stack className="tags" direction="row" spacing={1}>
-              {beer.tags.map(tag => 
-                <Chip label={tag} color="info" key={tag}/>
-              )}
-            </Stack>
           </CardContent>
         </CardActionArea>
       </Card>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FormHelperText, TextField, Typography } from '@material-ui/core';
 import Beer from 'models/Beer';
-import { distinct } from 'utils/ArrayUtils';
 import { FormControl } from '@material-ui/core';
 import { FormLabel } from '@material-ui/core';
 import { FormGroup } from '@material-ui/core';
@@ -14,7 +13,7 @@ import './BeerFilter.scss'
 
 export interface BeerFilterProps {
     beers: Beer[];
-    onFilterChange: (filteredBeers: Beer[]) => void
+    onFilterChange: (filters: ((beer: Beer) => boolean)[]) => void
 }
 
 const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
@@ -27,7 +26,7 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
     }
 
     const handleTagSelected = (event: any) => {
-      let updatedStyles = selectedStyles;
+      let updatedStyles = new Set(selectedStyles);
       if(event.target.checked){
         updatedStyles.add(event.target.name)
       }
@@ -39,7 +38,7 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
 
     const getAllTags = (): FilterQuality[] => {
       let tags = new Map<string, FilterQuality>()
-      applyFilters(beers).flatMap(b => b.tags || [])
+      beers.flatMap(b => b.tags || [])
         .forEach(tag => {
         let quality = tags.get(tag) || {
           key: tag,
@@ -56,7 +55,7 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
     
     const getAllStyles = (): FilterQuality[] => {
       let styles = new Map<BeerStyle, FilterQuality>()
-      applyFilters(beers).forEach(beer => {
+      beers.forEach(beer => {
         let quality = styles.get(beer.style) || {
           key: beer.style,
           name: beer.style,
@@ -69,15 +68,12 @@ const BeerFilter: React.FC<BeerFilterProps> = ({ beers, onFilterChange }) => {
       return Array.from(styles.values())
     }
 
-    const applyFilters = useCallback((beers: Beer[]): Beer[] => {
-      return beers.filter(
-        b => (!searchTerm || b.name.toLowerCase().includes(searchTerm))
-          && (selectedStyles.size == 0 || selectedStyles.has(b.style)))
-    }, [searchTerm, selectedStyles]);
-
     useEffect(() => {
-      onFilterChange(applyFilters(beers))
-    }, [applyFilters, beers, onFilterChange]);
+      onFilterChange([
+        b => !searchTerm || b.name.toLowerCase().includes(searchTerm),
+        b => selectedStyles.size == 0 || selectedStyles.has(b.style)
+      ])
+    }, [onFilterChange, searchTerm, selectedStyles]);
 
     return (
 
