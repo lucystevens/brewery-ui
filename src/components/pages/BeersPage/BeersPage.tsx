@@ -17,7 +17,7 @@ const BeersPage: React.FC = () => {
 
     const makeRequest = useCallback(() => {
         setupBeerServiceMock();
-        return new BeerService().getBeers(code);
+        return new BeerService().getBeers();
     }, [code]);
 
     const handleError = useCallback((error) => {

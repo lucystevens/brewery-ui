@@ -1,7 +1,9 @@
 import React from 'react'
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
-import { useHistory } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import './BeerDetailsCard.scss';
 
 export interface BeerDetailsCardProps {
     beer: Beer;
@@ -9,11 +11,6 @@ export interface BeerDetailsCardProps {
 
 const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
 
-  const history = useHistory();
-
-  const handleOnClick = () => {
-      history.push(`/beers/${beer.slug}`)
-  }
 
     return (
         <Card>
@@ -30,18 +27,13 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
             <Typography variant="body2" color="textSecondary" component="p">
               {beer.abv}% {beer.description}
             </Typography>
+            <Stack className="tags" direction="row" spacing={1}>
+              {beer.tags.map(tag => 
+                <Chip label={tag} color="info" />
+              )}
+            </Stack>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary" onClick={handleOnClick}>
-            More info
-          </Button>
-          {beer.isAvailable && 
-            <Button size="small" color="primary">
-              Add to cart
-            </Button>
-          }
-        </CardActions>
       </Card>
     );
 
