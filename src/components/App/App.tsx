@@ -23,9 +23,9 @@ function App() {
       <NavigationBar 
         options={[
             {text: "Home", link: "/"},
-            {text: "Blog", link: "/blog"},
+            //{text: "Blog", link: "/blog"},
             {text: "Beers", link: "/beers"},
-            {text: "Shop", link: "/shop"}
+            //{text: "Shop", link: "/shop"}
         ]}>
           <Box display={"flex"}>
             <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
@@ -33,16 +33,7 @@ function App() {
       </NavigationBar>
 
         <Switch>
-          <Route path="/beers/:slug">
-            <BeerPage />
-          </Route>
           <Route path="/beers">
-            <BeersPage></BeersPage>
-          </Route>
-          <Route path="/blog">
-            <Typography>{"BLOG"}</Typography>
-          </Route>
-          <Route path="/shop">
             <ComingSoonPage></ComingSoonPage>
           </Route>
           <Route path="/">
