@@ -23,7 +23,7 @@ jobs:
 
       - name: Get version of the project
         id: project-version
-        uses: 'euberdeveloper/ga-project-version@main'_ENV
+        uses: 'euberdeveloper/ga-project-version@main'
 
       - name: Set version in env variables
         run: echo "PROJECT_VERSION=${{steps.project-version.outputs.version}}" >> $GITHUB_ENV
