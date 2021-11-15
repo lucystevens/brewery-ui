@@ -8,7 +8,7 @@ interface Beer {
     logoUrl: string;
     description: string;
     style: BeerStyle;
-    isAvailable?: boolean;
+    quantityAvailable: number;
     price?: number;
     tags: string[]
 }

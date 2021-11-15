@@ -14,7 +14,7 @@ const mockBeers: Beer[] = [
         description: "Sessionable Vienna Lager",
         style: BeerStyle.LAGER,
         tags: ["vienna", "crisp", "lager", "german", "session"],
-        isAvailable: true,
+        quantityAvailable: 1,
         price: 3.00
     },
     {
@@ -26,7 +26,7 @@ const mockBeers: Beer[] = [
         description: "Boozy Chocolate Porter",
         style: BeerStyle.STOUT,
         tags: ["chocolate", "porter", "stout"],
-        isAvailable: true,
+        quantityAvailable: 2,
         price: 3.00
     },
     {
@@ -38,7 +38,7 @@ const mockBeers: Beer[] = [
         description: "Juicy New England IPA",
         style: BeerStyle.NEIPA,
         tags: ["neipa", "hazy", "hoppy", "ipa", "juicy"],
-        isAvailable: true,
+        quantityAvailable: 0,
         price: 3.00
     }
 ]

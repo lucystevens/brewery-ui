@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useAccessCode, useService } from '../../../hooks/ApiHook';
 import Beer from '../../../models/Beer';
 import BeerService from '../../../services/BeerService';
-import { setupBeerServiceMock } from '../../../services/BeerService/MockBeerService';
 import BeerDetailsCard from './BeerDetailsCard/BeerDetailsCard';
 import BeerFilter from './BeerFilter/BeerFilter';
 
@@ -13,7 +12,6 @@ const BeersPage: React.FC = () => {
     let code = useAccessCode()
 
     const makeRequest = useCallback(() => {
-        setupBeerServiceMock();
         return new BeerService().getBeers();
     }, [code]);
 
