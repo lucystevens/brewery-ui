@@ -1,0 +1,38 @@
+.navigation-bar {
+  padding-right: 1rem;
+  background-color: black;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .full-menu {
+    display: none!important;
+  }
+  .small-menu {
+    display: flex!important;
+  }
+}
+
+.full-menu {
+  display: flex;
+}
+.small-menu {
+  display: none;
+}
+
+.full-menu .nav-option.MuiButton-text {
+  font-size: 3rem;
+  font-family: "Crossfit-Bold";
+  padding: 0rem 2rem;
+  color: white;
+}
+
+.nav-option.MuiButton-text.selected {
+  color: #bbbbbb;
+}
+
+.nav-option .MuiTypography-root {
+  font-size: 2rem;
+  font-family: "Crossfit-Bold";
+}
+

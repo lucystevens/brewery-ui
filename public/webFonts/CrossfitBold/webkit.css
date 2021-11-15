@@ -1,0 +1,28 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 4024118, 2021-03-08T09:09:05-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Crossfit-Bold by Anita Jürgeleit
+ * URL: https://www.myfonts.com/fonts/anita-jurgeleit/crossfit/bold/
+ * Copyright: Anita Jürgeleit | 2018
+ * 
+ * 
+ * 
+ * © 2021 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3d6736");
+  
+@font-face {
+  font-family: "Crossfit-Bold";
+  src: url('font.woff2') format('woff2'), url('font.woff') format('woff');
+}
+
