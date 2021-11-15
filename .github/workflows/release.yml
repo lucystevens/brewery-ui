@@ -10,6 +10,7 @@ on:
 env:
   GH_USER: lukecmstevens
   DOCKERHUB_USERNAME: lukecmstevens
+  PROJECT_NAME: brewery-ui
 
 jobs:
   build:
@@ -20,18 +21,15 @@ jobs:
       - name: Checkout current branch
         uses: actions/checkout@v2
 
-      - name: Get version
-        run: |
-          PKG_JSON=$(cat ./package.json)
-          echo "PROJECT_VERSION=${{fromJson($PKG_JSON).version}}" >> $GITHUB_ENV
+      - name: Get version of the project
+        id: project-version
+        uses: 'euberdeveloper/ga-project-version@main'_ENV
 
-      - name: Get name
-        run: |
-          PKG_JSON=$(cat ./package.json)
-          echo "PROJECT_NAME=${{fromJson($PKG_JSON).name}}" >> $GITHUB_ENV
+      - name: Set version in env variables
+        run: echo "PROJECT_VERSION=${{steps.project-version.outputs.version}}" >> $GITHUB_ENV
 
       - name: Check environment variables
-        run: echo "version= $PROJECT_VERSION name= $PROJECT_NAME"
+        run: echo "${{ env.PROJECT_NAME }}:${{ env.PROJECT_VERSION }}"
 
       # Setup for docker build and push
 
