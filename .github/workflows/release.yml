@@ -54,6 +54,3 @@ jobs:
           tags: |
             ${{ env.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.PROJECT_VERSION }}
             ${{ env.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest
-          build-args: |
-            GH_USER=${{ env.GH_USER }}
-            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
