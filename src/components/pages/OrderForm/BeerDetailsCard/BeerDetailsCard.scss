@@ -1,0 +1,28 @@
+.card-root {
+    display: flex;
+    height: 100%;
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+     }
+
+     .card-details {
+        flex: 1 0 auto;
+     }
+
+     .card-controls {
+        display: flex;
+        align-items: center;
+     }
+
+     .card-image {
+         width: 100%;
+         background-size: contain;
+         background-position: center right;
+     }
+}
+
+.tags {
+    margin-top: 0.5rem;
+}
