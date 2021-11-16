@@ -6,3 +6,14 @@
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 425px) {
+    img.beer-toast {
+        width: 80vw;
+    }
+
+    .MuiTypography-root.MuiTypography-h1 {
+        font-size: 3rem;
+    }
+
+}
