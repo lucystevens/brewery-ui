@@ -11,7 +11,7 @@ const ComingSoonPage: React.FC = () => {
                 <Typography variant={"h1"} className={"coming-soon"}>Coming soon!</Typography>
             </Grid>
             <Grid item xs={12} className={"center"}>
-                <img alt="Two beers toasting" src="/images/beer-toast.gif"/>
+                <img className={"beer-toast"} alt="Two beers toasting" src="/images/beer-toast.gif"/>
             </Grid>
         </Grid> 
     );

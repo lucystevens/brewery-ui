@@ -10,6 +10,7 @@ import { Box, Typography } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import BeersPage from '../pages/BeersPage/BeersPage';
 import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
+import OrderForm from 'components/pages/OrderForm/OrderForm';
 
 function App() {
 
@@ -35,6 +36,9 @@ function App() {
         <Switch>
           <Route path="/beers">
             <ComingSoonPage></ComingSoonPage>
+          </Route>
+          <Route path="/orderform">
+            <OrderForm></OrderForm>
           </Route>
           <Route path="/">
             <HomePage></HomePage>

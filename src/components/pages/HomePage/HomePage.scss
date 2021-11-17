@@ -19,7 +19,48 @@
 
     .MuiTypography-h3.motto {
         font-family: "Crossfit-Bold";
+        margin-top: 1rem;
         padding-bottom: 20vh;
     }
 
+}
+
+@media (max-width: 1200px) {
+    .MuiTypography-root.MuiTypography-h1 {
+        font-size: 4rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h2 {
+        font-size: 2.5rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h3 {
+        font-size: 2rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h4 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .homepage-box {
+        padding-top: 10vh;
+    }
+
+    .MuiTypography-root.MuiTypography-h1 {
+        font-size: 3rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h2 {
+        font-size: 2rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h3 {
+        font-size: 1.5rem;
+    }
+
+    .MuiTypography-root.MuiTypography-h4 {
+        font-size: 1rem;
+    }
 }
