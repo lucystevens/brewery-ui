@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { BeerOrderDto, CreatedOrder } from 'models/BeerOrder';
 import Beer from "../../models/Beer";
 import ServerResponse from '../../models/ServerResponse';
 import { TeamMember } from '../../models/TeamMember';
@@ -12,9 +13,8 @@ export class BeerService {
         return axios.get(`/api/beer`);
     }
 
-    /**
-     *     getBeers(authCode: string): Promise<AxiosResponse<ServerResponse<Beer[]>>> {
-        return axios.get(`/api/beer`, { params: { code: authCode } });
+    createOrder(order: BeerOrderDto): Promise<AxiosResponse<ServerResponse<CreatedOrder>>> {
+        return axios.post('/api/order', order)
     }
-     */
+
 }

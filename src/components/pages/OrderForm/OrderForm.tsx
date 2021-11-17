@@ -1,8 +1,9 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Grid, SvgIcon, SvgIconTypeMap, TextField, Tooltip, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Button, Grid, Snackbar, SvgIconTypeMap, TextField, Tooltip, Typography } from '@material-ui/core';
+import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import HomeIcon from '@material-ui/icons/Home';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import MailIcon from '@material-ui/icons/Mail';
-import React, { Component, useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Redirect } from 'react-router-dom';
 import { useAccessCode, useService } from '../../../hooks/ApiHook';
 import Beer from '../../../models/Beer';
@@ -10,26 +11,13 @@ import BeerService from '../../../services/BeerService';
 import BeerDetailsCard from './BeerDetailsCard/BeerDetailsCard';
 import DeliveryTypeCard from './DeliveryTypeCard/DeliveryTypeCard';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { BeerOrderDto, CreatedOrder } from 'models/BeerOrder';
 import './OrderForm.scss'
 
 interface DeliveryOption {
     name: string
     description: string
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
-}
-
-interface BeerQuantityDto {
-    beerId: number
-    quantity: number
-}
-
-interface BeerOrderDto {
-    beerQuantities: BeerQuantityDto[]
-    deliveryOption?: string
-    name?: string
-    phoneNumber?: string
-    address?: string
-    notes?: string
 }
 
 const OrderForm: React.FC = () => {
@@ -42,12 +30,25 @@ const OrderForm: React.FC = () => {
 
     let code = useAccessCode()
 
+    const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false);
+    const [snackbarSeverity, setSnackbarSeverity] = React.useState<Color>();
+    const [snackbarMessage, setSnackbarMessage] = React.useState<string>();
+
+    const openSnackbar = (severity: Color, message: string) => {
+        setSnackbarSeverity(severity)
+        setSnackbarMessage(message)
+        setSnackbarOpen(true)
+    }
+
+    const closeSnackbar = () => setSnackbarOpen(false)
+
     const makeRequest = useCallback(() => {
         return new BeerService().getBeers();
-    }, [code]);
+    }, []);
 
     const handleError = useCallback((error) => {
         console.error(error)
+        openSnackbar("error", "Something went wrong. Please try again later");
     }, []);
 
     const [{ data, isLoading }] = useService(makeRequest, handleError);
@@ -85,6 +86,11 @@ const OrderForm: React.FC = () => {
         return result
     }
 
+    const openInNewTab = (url: string) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
+      }
+
     const order = () => {
         let dto: BeerOrderDto = {
             beerQuantities: [],
@@ -100,7 +106,25 @@ const OrderForm: React.FC = () => {
                 quantity: quantity
             })
         })
+
         console.log(JSON.stringify(dto))
+        new BeerService().createOrder(dto)
+            .then(({ data }) => {
+                if(data.success && data.data){
+                    openSnackbar("success", "Order placed successfully!");
+                    let dto: CreatedOrder = data.data;
+                    let price = (dto.orderTotal / 100).toFixed(2)
+                    openInNewTab(`https://monzo.me/lukecameronstevens/${price}?d=Ref%3A%20%23${dto.orderRef}%20%F0%9F%8D%BA`)
+                }
+                else {
+                    console.error(data.errors)
+                    openSnackbar("error", data.errors);
+                }    
+            })
+            .catch((e) => {
+                console.error(e)
+                openSnackbar("error", "Something went wrong. Please try again later");
+            })
     }
 
     if (code != "123456") {
@@ -110,6 +134,13 @@ const OrderForm: React.FC = () => {
     return (
         <div className="orderform-root">
             <div className="orderform-container">
+
+                <Snackbar open={snackbarOpen} onClose={closeSnackbar}>
+                    <MuiAlert elevation={6} variant="filled"  onClose={closeSnackbar} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </MuiAlert>
+                </Snackbar>
+
                 <div className="orderform-header">
                     <Typography className="title" variant={"h3"}>CBP Order form</Typography>
                     <Typography className="subtotal" variant={"h3"}>Subtotal: £{getSubTotal().toFixed(2)}</Typography>
