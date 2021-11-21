@@ -27,7 +27,10 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer, onChangeQuantit
               {beer.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {beer.abv}% {beer.description}
+              {beer.abv}% {beer.description} (330ml)
+            </Typography>
+            <Typography variant="h5" color="textSecondary">
+              £{(beer.price/100).toFixed(2)}
             </Typography>
           <CardActions disableSpacing className="card-actions">
           <IconButton disabled={quantity === 0} onClick={() => updateQuantity(quantity - 1)} aria-label="remove from order">

@@ -9,7 +9,7 @@ interface Beer {
     description: string;
     style: BeerStyle;
     quantityAvailable: number;
-    price?: number;
+    price: number;
     tags: string[]
 }
 

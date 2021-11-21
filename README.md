@@ -3,6 +3,8 @@ Frontend ui for the CBP website
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Bring up dependencies with `docker-compose up -d db-schemas brewery-api api-proxy`
+
 ## Available Scripts
 
 In the project directory, you can run:

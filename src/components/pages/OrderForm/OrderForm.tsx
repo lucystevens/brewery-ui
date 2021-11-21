@@ -13,6 +13,7 @@ import DeliveryTypeCard from './DeliveryTypeCard/DeliveryTypeCard';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { BeerOrderDto, CreatedOrder } from 'models/BeerOrder';
 import './OrderForm.scss'
+import Skeleton from '@material-ui/lab/Skeleton';
 
 interface DeliveryOption {
     name: string
@@ -60,6 +61,7 @@ const OrderForm: React.FC = () => {
     const [phoneNumber, setPhoneNumber] = React.useState<string>();
     const [address, setAddress] = React.useState<string>();
     const [notes, setNotes] = React.useState<string>();
+    const [orderSubmitted, setOrderSubmitted] = React.useState<boolean>();
 
     const next = () => setExpandedPanel(expandedPanel+1);
     const previous = () => setExpandedPanel(expandedPanel-1);
@@ -76,6 +78,10 @@ const OrderForm: React.FC = () => {
             total += (beer.price || 0) * quantity
         })
         return total/100
+    }
+
+    const getAvailableBeers = () => {
+        return data?.filter(b => b.quantityAvailable > 0) || []
     }
 
     const beersSelected = () => {
@@ -107,10 +113,10 @@ const OrderForm: React.FC = () => {
             })
         })
 
-        console.log(JSON.stringify(dto))
         new BeerService().createOrder(dto)
             .then(({ data }) => {
                 if(data.success && data.data){
+                    setOrderSubmitted(true)
                     openSnackbar("success", "Order placed successfully!");
                     let dto: CreatedOrder = data.data;
                     let price = (dto.orderTotal / 100).toFixed(2)
@@ -134,109 +140,115 @@ const OrderForm: React.FC = () => {
     return (
         <div className="orderform-root">
             <div className="orderform-container">
+                { orderSubmitted? 
+                    <div className="orderform-header">
+                        <Typography className="title" variant={"h3"}>Order submitted successfully!</Typography>
+                    </div> : <>
+                    <Snackbar open={snackbarOpen} onClose={ closeSnackbar}>
+                        <MuiAlert elevation={6} variant="filled"  onClose={closeSnackbar} severity={snackbarSeverity}>
+                            {snackbarMessage}
+                        </MuiAlert>
+                    </Snackbar>
 
-                <Snackbar open={snackbarOpen} onClose={closeSnackbar}>
-                    <MuiAlert elevation={6} variant="filled"  onClose={closeSnackbar} severity={snackbarSeverity}>
-                        {snackbarMessage}
-                    </MuiAlert>
-                </Snackbar>
+                    <div className="orderform-header">
+                        <Typography className="title" variant={"h3"}>CBP Order form</Typography>
+                        <Typography className="subtotal" variant={"h3"}>Subtotal: £{getSubTotal().toFixed(2)}</Typography>
+                    </div>
+                    <Accordion expanded={expandedPanel === 1}>
+                        <AccordionSummary aria-controls="choose-beers" id="choose-beers">
+                            <Typography className="accordion-title" variant={"h4"}>Step 1: Choose your beers</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{flexDirection: "column"}}>
+                            <Grid container alignItems="stretch" className={"beers"} style={{padding:"1rem"}} spacing={2}>
+                                { isLoading?
+                                    <Skeleton variant="rect" width={210} height={118} /> :
+                                    getAvailableBeers().length == 0? <Typography variant={"h5"}>No beers currently available, come back soon!</Typography>                                :
+                                    getAvailableBeers()
+                                        .map((beer) => 
+                                            <Grid item xs={12} md={6} lg={4} key={beer.id}>
+                                                <BeerDetailsCard beer={beer} onChangeQuantity={(q => updateBeerQuantity(beer, q))}/> 
+                                            </Grid>
+                                        )
+                                }
+                            </Grid>
+                            <div className="accordion-actions first">
+                                { beersSelected()? 
+                                    <Button variant="contained" color="primary" onClick={next}>Next</Button> :
+                                    <Tooltip title="You gotta pick some beer!">
+                                        <span><Button disabled variant="contained" color="primary" onClick={next}>Next</Button></span>
+                                    </Tooltip> }
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
 
-                <div className="orderform-header">
-                    <Typography className="title" variant={"h3"}>CBP Order form</Typography>
-                    <Typography className="subtotal" variant={"h3"}>Subtotal: £{getSubTotal().toFixed(2)}</Typography>
-                </div>
-                <Accordion expanded={expandedPanel === 1}>
-                    <AccordionSummary aria-controls="choose-beers" id="choose-beers">
-                        <Typography className="accordion-title" variant={"h4"}>Step 1: Choose your beers</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails style={{flexDirection: "column"}}>
-                        <Grid container alignItems="stretch" className={"beers"} style={{padding:"1rem"}} spacing={2}>
-                            { !isLoading && data?.filter(b => b.quantityAvailable > 0)
-                                .map((beer) => 
-                                    <Grid item xs={12} md={6} lg={4} key={beer.id}>
-                                        <BeerDetailsCard beer={beer} onChangeQuantity={(q => updateBeerQuantity(beer, q))}/> 
+                    <Accordion expanded={expandedPanel === 2}>
+                        <AccordionSummary aria-controls="choose-delivery" id="choose-delivery">
+                            <Typography className="accordion-title" variant={"h4"}>Step 2: Delivery</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{flexDirection: "column"}}>
+                            <Grid container alignItems="stretch" className={"delivery-options"} style={{padding:"1rem"}} spacing={2}>
+                                { deliveryOptions.map( option =>
+                                    <Grid item xs={12} md={6} lg={4} key={option.name}>
+                                        <DeliveryTypeCard 
+                                            name={option.name} 
+                                            description={option.description} 
+                                            icon={option.icon}
+                                            selected={deliveryType === option.name} 
+                                            onClick={() => setDeliveryType(option.name)}/>
                                     </Grid>
-                                )
-                            }
-                        </Grid>
-                        <div className="accordion-actions first">
-                            { beersSelected()? 
-                                <Button variant="contained" color="primary" onClick={next}>Next</Button> :
-                                <Tooltip title="You gotta pick some beer!">
-                                    <span><Button disabled variant="contained" color="primary" onClick={next}>Next</Button></span>
-                                </Tooltip> }
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
+                                )}
+                            </Grid>
+                            <div className="accordion-actions">
+                                <Button variant="contained" color="primary" onClick={previous}>Previous</Button>
+                                { deliveryType? 
+                                    <Button variant="contained" color="primary" onClick={next}>Next</Button> :
+                                    <Tooltip title="Choose a delivery option!">
+                                        <span><Button disabled variant="contained" color="primary" onClick={next}>Next</Button></span>
+                                    </Tooltip> }
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
 
-                <Accordion expanded={expandedPanel === 2}>
-                    <AccordionSummary aria-controls="choose-delivery" id="choose-delivery">
-                        <Typography className="accordion-title" variant={"h4"}>Step 2: Delivery</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails style={{flexDirection: "column"}}>
-                        <Grid container alignItems="stretch" className={"delivery-options"} style={{padding:"1rem"}} spacing={2}>
-                            { deliveryOptions.map( option =>
-                                <Grid item xs={12} md={6} lg={4} key={option.name}>
-                                    <DeliveryTypeCard 
-                                        name={option.name} 
-                                        description={option.description} 
-                                        icon={option.icon}
-                                        selected={deliveryType === option.name} 
-                                        onClick={() => setDeliveryType(option.name)}/>
-                                </Grid>
-                            )}
-                        </Grid>
-                        <div className="accordion-actions">
-                            <Button variant="contained" color="primary" onClick={previous}>Previous</Button>
-                            { deliveryType? 
-                                <Button variant="contained" color="primary" onClick={next}>Next</Button> :
-                                <Tooltip title="Choose a delivery option!">
-                                    <span><Button disabled variant="contained" color="primary" onClick={next}>Next</Button></span>
-                                </Tooltip> }
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-
-                <Accordion expanded={expandedPanel === 3}>
-                    <AccordionSummary aria-controls="enter-details" id="enter-details">
-                        <Typography className="accordion-title" variant={"h4"}>Step 3: Enter details</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className="form-inputs" style={{flexDirection: "column"}}>
-                        <TextField
-                            required
-                            id="name"
-                            label="Name"
-                            variant="outlined"
-                            value={name || ""}
-                            onChange={event => setName(event.target.value)} />
-                        <TextField
-                            id="phone"
-                            label="Phone Number"
-                            variant="outlined"
-                            value={phoneNumber || ""}
-                            onChange={event => setPhoneNumber(event.target.value)} />
-                        {deliveryType != "Collection" && <TextField
-                            required
-                            multiline
-                            id="address"
-                            label="Address"
-                            variant="outlined"
-                            value={address || ""}
-                            onChange={event => setAddress(event.target.value)} /> }
-                        <TextField
-                            id="notes"
-                            multiline
-                            label="Anything else? (e.g. preferred collection/delivery time)"
-                            variant="outlined"
-                            value={notes || ""}
-                            onChange={event => setNotes(event.target.value)} />
-                        <div className="accordion-actions">
-                            <Button variant="contained" color="primary" onClick={previous}>Previous</Button>
-                            <Button variant="contained" color="primary" onClick={order}>Order!</Button>
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-
+                    <Accordion expanded={expandedPanel === 3}>
+                        <AccordionSummary aria-controls="enter-details" id="enter-details">
+                            <Typography className="accordion-title" variant={"h4"}>Step 3: Enter details</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className="form-inputs" style={{flexDirection: "column"}}>
+                            <TextField
+                                required
+                                id="name"
+                                label="Name"
+                                variant="outlined"
+                                value={name || ""}
+                                onChange={event => setName(event.target.value)} />
+                            <TextField
+                                id="phone"
+                                label="Phone Number"
+                                variant="outlined"
+                                value={phoneNumber || ""}
+                                onChange={event => setPhoneNumber(event.target.value)} />
+                            {deliveryType != "Collection" && <TextField
+                                required
+                                multiline
+                                id="address"
+                                label="Address"
+                                variant="outlined"
+                                value={address || ""}
+                                onChange={event => setAddress(event.target.value)} /> }
+                            <TextField
+                                id="notes"
+                                multiline
+                                label="Anything else? (e.g. preferred collection/delivery time)"
+                                variant="outlined"
+                                value={notes || ""}
+                                onChange={event => setNotes(event.target.value)} />
+                            <div className="accordion-actions">
+                                <Button variant="contained" color="primary" onClick={previous}>Previous</Button>
+                                <Button variant="contained" color="primary" onClick={order}>Order!</Button>
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                </>}
             </div>
         </div>  
     );
