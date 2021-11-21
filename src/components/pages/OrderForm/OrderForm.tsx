@@ -133,7 +133,7 @@ const OrderForm: React.FC = () => {
             })
     }
 
-    if (code != "123456") {
+    if (code != "DDNAbeerclub") {
         return <Redirect to='/'/>;
     }
 
