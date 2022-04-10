@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, IconButton, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
 import './BeerDetailsCard.scss';
-import { Add, AddCircleOutlined, RemoveCircleOutlined } from '@material-ui/icons';
+import { AddCircleOutlined, RemoveCircleOutlined } from '@material-ui/icons';
 
 export interface BeerDetailsCardProps {
     beer: Beer;
@@ -37,7 +37,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer, onChangeQuantit
             <RemoveCircleOutlined/>
           </IconButton>
           <Typography variant={"h3"}>{quantity}</Typography>
-          <IconButton disabled={quantity == beer.quantityAvailable} onClick={() => updateQuantity(quantity + 1)} aria-label="add to order">
+          <IconButton disabled={quantity === beer.quantityAvailable} onClick={() => updateQuantity(quantity + 1)} aria-label="add to order">
             <AddCircleOutlined/>
           </IconButton>
         </CardActions>

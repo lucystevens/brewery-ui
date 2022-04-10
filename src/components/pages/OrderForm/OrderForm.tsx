@@ -137,7 +137,7 @@ const OrderForm: React.FC = () => {
             })
     }
 
-    if (code != "DDNAbeerclub") {
+    if (code !== "DDNAbeerclub") {
         return <Redirect to='/'/>;
     }
 
@@ -166,7 +166,7 @@ const OrderForm: React.FC = () => {
                             <Grid container alignItems="stretch" className={"beers"} style={{padding:"1rem"}} spacing={2}>
                                 { isLoading?
                                     <Skeleton variant="rect" width={210} height={118} /> :
-                                    getAvailableBeers().length == 0? <Typography variant={"h5"}>No beers currently available, come back soon!</Typography>                                :
+                                    getAvailableBeers().length === 0? <Typography variant={"h5"}>No beers currently available, come back soon!</Typography>                                :
                                     getAvailableBeers()
                                         .map((beer) => 
                                             <Grid item xs={12} md={6} lg={4} key={beer.id}>
@@ -231,7 +231,7 @@ const OrderForm: React.FC = () => {
                                 variant="outlined"
                                 value={phoneNumber || ""}
                                 onChange={event => setPhoneNumber(event.target.value)} />
-                            {deliveryType != "Collection" && <TextField
+                            {deliveryType !== "Collection" && <TextField
                                 required
                                 multiline
                                 id="address"
