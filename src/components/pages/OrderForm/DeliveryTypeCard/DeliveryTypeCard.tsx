@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActionArea, CardActions, CardContent, IconButton, SvgIcon, SvgIconTypeMap, Typography } from '@material-ui/core';
+import { Card, CardContent, SvgIcon, SvgIconTypeMap, Typography } from '@material-ui/core';
 import './DeliveryTypeCard.scss'
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 

@@ -8,16 +8,10 @@ import {
 } from "react-router-dom";
 import { Box, Typography } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
-import BeersPage from '../pages/BeersPage/BeersPage';
 import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
 import OrderForm from 'components/pages/OrderForm/OrderForm';
 
 function App() {
-
-  function BeerPage() {
-    let { slug } = useParams<{slug: string}>();
-    return <Typography>Now showing beer {slug}</Typography>;
-  }
 
   return (
     <Router>

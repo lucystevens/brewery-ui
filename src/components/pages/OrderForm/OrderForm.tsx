@@ -14,6 +14,7 @@ import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { BeerOrderDto, CreatedOrder } from 'models/BeerOrder';
 import './OrderForm.scss'
 import Skeleton from '@material-ui/lab/Skeleton';
+import OrderCompleteDialog from './OrderCompleteDialog/OrderCompleteDialog';
 
 interface DeliveryOption {
     name: string
@@ -23,9 +24,9 @@ interface DeliveryOption {
 
 const OrderForm: React.FC = () => {
 
-    const deliveryOptions = [
+    const deliveryOptions: DeliveryOption[] = [
         {name: "Collection", description: "Pickup from brewery", icon: HomeIcon},
-        {name: "Local Delivery", description: "Local delivery within EH& and EH6 postcodes", icon: DirectionsBikeIcon},
+        {name: "Local Delivery", description: "Local delivery within EH7 and EH6 postcodes", icon: DirectionsBikeIcon},
         {name: "Postal Delivery", description: "Delivery via Royal Mail within UK. £5 surcharge.", icon: MailIcon}
     ]
 
@@ -61,7 +62,19 @@ const OrderForm: React.FC = () => {
     const [phoneNumber, setPhoneNumber] = React.useState<string>();
     const [address, setAddress] = React.useState<string>();
     const [notes, setNotes] = React.useState<string>();
+
     const [orderSubmitted, setOrderSubmitted] = React.useState<boolean>();
+    const [orderCompleteDialogOpen, setOrderCompleteDialogOpen] = React.useState<boolean>(false);
+    const [createdOrder, setCreatedOrder] = React.useState<CreatedOrder>();
+
+    const openOrderCompleteDialog = (createdOrder: CreatedOrder) => {
+        setCreatedOrder(createdOrder)
+        setOrderCompleteDialogOpen(true)
+    }
+    const closeOrderCompleteDialog = () => {
+        setOrderSubmitted(true)
+        setOrderCompleteDialogOpen(false)
+    }
 
     const next = () => setExpandedPanel(expandedPanel+1);
     const previous = () => setExpandedPanel(expandedPanel-1);
@@ -92,11 +105,6 @@ const OrderForm: React.FC = () => {
         return result
     }
 
-    const openInNewTab = (url: string) => {
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-        if (newWindow) newWindow.opener = null
-      }
-
     const order = () => {
         let dto: BeerOrderDto = {
             beerQuantities: [],
@@ -116,11 +124,7 @@ const OrderForm: React.FC = () => {
         new BeerService().createOrder(dto)
             .then(({ data }) => {
                 if(data.success && data.data){
-                    setOrderSubmitted(true)
-                    openSnackbar("success", "Order placed successfully!");
-                    let dto: CreatedOrder = data.data;
-                    let price = (dto.orderTotal / 100).toFixed(2)
-                    openInNewTab(`https://monzo.me/lukecameronstevens/${price}?d=Ref%3A%20%23${dto.orderRef}%20%F0%9F%8D%BA`)
+                    openOrderCompleteDialog(data.data)
                 }
                 else {
                     console.error(data.errors)
@@ -133,7 +137,7 @@ const OrderForm: React.FC = () => {
             })
     }
 
-    if (code != "DDNAbeerclub") {
+    if (code !== "DDNAbeerclub") {
         return <Redirect to='/'/>;
     }
 
@@ -162,7 +166,7 @@ const OrderForm: React.FC = () => {
                             <Grid container alignItems="stretch" className={"beers"} style={{padding:"1rem"}} spacing={2}>
                                 { isLoading?
                                     <Skeleton variant="rect" width={210} height={118} /> :
-                                    getAvailableBeers().length == 0? <Typography variant={"h5"}>No beers currently available, come back soon!</Typography>                                :
+                                    getAvailableBeers().length === 0? <Typography variant={"h5"}>No beers currently available, come back soon!</Typography>                                :
                                     getAvailableBeers()
                                         .map((beer) => 
                                             <Grid item xs={12} md={6} lg={4} key={beer.id}>
@@ -227,7 +231,7 @@ const OrderForm: React.FC = () => {
                                 variant="outlined"
                                 value={phoneNumber || ""}
                                 onChange={event => setPhoneNumber(event.target.value)} />
-                            {deliveryType != "Collection" && <TextField
+                            {deliveryType !== "Collection" && <TextField
                                 required
                                 multiline
                                 id="address"
@@ -250,6 +254,10 @@ const OrderForm: React.FC = () => {
                     </Accordion>
                 </>}
             </div>
+            <OrderCompleteDialog 
+                handleClose={closeOrderCompleteDialog}
+                isOpen={orderCompleteDialogOpen}
+                order={createdOrder} />
         </div>  
     );
 
