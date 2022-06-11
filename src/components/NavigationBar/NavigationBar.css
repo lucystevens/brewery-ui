@@ -4,7 +4,7 @@
   color: white;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
   .full-menu {
     display: none!important;
   }
@@ -36,6 +36,14 @@
   font-family: "Crossfit-Bold";
 }
 
+.side-menu .dropdown .nav-option .MuiTypography-root {
+  font-size: 1.5rem;
+}
+
+.side-menu .dropdown:last-of-type {
+  border-bottom: solid #ddd 1px;
+}
+
 .full-menu .menu-option {
   display:flex;
   flex-direction:column;
@@ -49,5 +57,11 @@
   top: 6rem;
   background-color: black;
   align-items: end;
+}
+
+.full-menu .menu-option .dropdown-icon {
+  align-self: center;
+  position: fixed;
+  top: 5rem;
 }
 
