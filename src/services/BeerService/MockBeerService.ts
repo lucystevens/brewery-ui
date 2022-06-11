@@ -2,7 +2,6 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Beer from '../../models/Beer';
 import BeerStyle from '../../models/BeerStyle';
-import { TeamMember } from '../../models/TeamMember';
 
 const mockBeers: Beer[] = [
     {
@@ -43,30 +42,9 @@ const mockBeers: Beer[] = [
     }
 ]
 
-const mockTeam: TeamMember[] = [
-    {
-        name: "Luke Stevens",
-        role: "Head Brewer",
-        profileImg: "/images/team/luke-stevens.png",
-        text: ""
-    },
-    {
-        name: "Lizzie Stevens",
-        role: "Head of Marketing",
-        profileImg: "/images/team/lizzie-stevens.png",
-        text: ""
-    },
-    {
-        name: "Kieran Newton",
-        role: "Assistant Brewer",
-        profileImg: "/images/team/kieran-newton.png",
-        text: ""
-    }
-]
 
 export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
   mock.onGet(`/api/beer`).reply(200, { success: true, data: mockBeers });
-  mock.onGet(`/api/team`).reply(200, { success: true, data: mockTeam });
   return mock;
 };
