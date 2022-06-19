@@ -11,6 +11,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
 import OrderForm from 'components/pages/OrderForm/OrderForm';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
+import BeersPage from 'components/pages/BeersPage/BeersPage';
 
 function App() {
 
@@ -50,7 +51,7 @@ function App() {
 
           <Switch>
             <Route path="/beers">
-              <h1>Our Beers</h1>
+              <BeersPage/>
             </Route>
             <Route path="/meet-the-team">
               <TeamPage/>

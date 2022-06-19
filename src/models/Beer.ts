@@ -1,16 +1,22 @@
-import BeerStyle from "./BeerStyle";
-
 interface Beer {
     id: number;
     slug: string;
     name: string;
+    iconUrl: string;
     abv: number;
-    logoUrl: string;
     description: string;
-    style: BeerStyle;
-    quantityAvailable: number;
+    style: string;
     price: number;
+    quantityAvailable: number;
     tags: string[]
+    textColour: String
+    category: BeerCategory
+}
+
+export enum BeerCategory {
+    CORE,
+    SEASONAL,
+    ARCHIVE
 }
 
 export default Beer;

@@ -1,8 +1,6 @@
 import React from 'react'
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
 import './BeerDetailsCard.scss';
 
 export interface BeerDetailsCardProps {
@@ -17,7 +15,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            image={beer.logoUrl}
+            image={beer.iconUrl}
             title={beer.name}
           />
           <CardContent>
