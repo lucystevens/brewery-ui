@@ -16,7 +16,7 @@ const mockBeers: Beer[] = [
         tags: ["lager", "german", "session"],
         quantityAvailable: 1,
         price: 3.00,
-        textColour: "white",
+        textColour: "black",
         category: BeerCategory.CORE
     },
     {
@@ -46,7 +46,7 @@ const mockBeers: Beer[] = [
         tags: ["neipa", "hazy", "hoppy", "ipa", "juicy"],
         quantityAvailable: 0,
         price: 3.00,
-        textColour: "white",
+        textColour: "black",
         category: BeerCategory.CORE
     },
     {
@@ -62,7 +62,7 @@ const mockBeers: Beer[] = [
         tags: ["smoothie", "fruity", "sour"],
         quantityAvailable: 0,
         price: 3.00,
-        textColour: "white",
+        textColour: "black",
         category: BeerCategory.SEASONAL
     },
     {
@@ -77,7 +77,7 @@ const mockBeers: Beer[] = [
         tags: ["malty", "rich", "lager"],
         quantityAvailable: 0,
         price: 3.00,
-        textColour: "white",
+        textColour: "black",
         category: BeerCategory.SEASONAL
     }
 ]
@@ -92,7 +92,7 @@ const mockError: ErrorResponse = {
 
 export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
-  // mock.onGet(`/api/beer`).reply(200, mockBeers);
-  mock.onGet(`/api/beer`).reply(500, mockError);
+  mock.onGet(`/api/beer`).reply(200, mockBeers);
+  //mock.onGet(`/api/beer`).reply(500, mockError);
   return mock;
 };

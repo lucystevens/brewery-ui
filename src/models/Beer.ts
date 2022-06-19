@@ -9,7 +9,7 @@ interface Beer {
     price: number;
     quantityAvailable: number;
     tags: string[]
-    textColour: String
+    textColour: string
     category: BeerCategory
 }
 

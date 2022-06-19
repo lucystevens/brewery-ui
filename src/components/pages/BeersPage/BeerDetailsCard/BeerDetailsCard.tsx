@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import Beer from '../../../../models/Beer';
 import './BeerDetailsCard.scss';
 
@@ -11,23 +11,26 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer }) => {
 
 
     return (
-        <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            image={beer.iconUrl}
-            title={beer.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {beer.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {beer.abv}% {beer.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+        <Box 
+          className="beer-card" 
+          style={{
+            backgroundImage: `url('${beer.iconUrl}')`,
+            color: beer.textColour,
+            textShadow: `2px 2px ${beer.textColour === 'black'? 'white' : 'black'}`
+            }}>
+              <div className="content">
+                <Typography 
+                  variant={"h4"} 
+                  className="name">
+                    { beer.name }
+                </Typography>
+                <Typography 
+                  variant={"h6"} 
+                  className="style">
+                    { beer.style } { beer.abv }%
+                </Typography>
+              </div>
+        </Box>
     );
 
 };
