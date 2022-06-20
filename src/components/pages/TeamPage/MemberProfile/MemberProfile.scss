@@ -1,3 +1,7 @@
 .content {
-    padding: 20px
+    padding: 20px;
+
+    .MuiTypography-gutterBottom {
+        margin-bottom: 16px;
+    }
 }

@@ -21,19 +21,17 @@ const MemberProfile: React.FC<MemberProfileProps> =
                         alt={name}
                         image={imageSrc}
                         title={name}/>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            { name } { pronouns }
-                        </Typography>
-                        <Typography variant="h6" color="textSecondary" component="p">
-                            {role}
-                        </Typography>
-                    </CardContent>
                 </CardActionArea>
             </Card>
 
         const content = () =>
             <div className="content">
+                <Typography variant="h4">
+                    { name } { pronouns }
+                </Typography>
+                <Typography color="textSecondary" variant="h5" gutterBottom>
+                    {role}
+                </Typography>
                 { children }
             </div>
 
