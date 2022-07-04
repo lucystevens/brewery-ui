@@ -13,16 +13,28 @@ const BeersPage: React.FC = () => {
     const [selectedTab, selectTab] = useState<BeerCategory>(BeerCategory.CORE)
 
     const categories = [
-        { type: BeerCategory.CORE, name: "The Regulars"},
-        { type: BeerCategory.SEASONAL, name: "Old Pals"},
-        { type: BeerCategory.ARCHIVE, name: "Gone but not forgotten"}
+        { 
+            type: BeerCategory.CORE,
+            name: "The Regulars",
+            subtitle: "Our core range - always there for you."
+        },
+        { 
+            type: BeerCategory.SEASONAL,
+            name: "Old Pals",
+            subtitle: "They might come and go but you have great fun together."
+        },
+        { 
+            type: BeerCategory.ARCHIVE, 
+            name: "Gone but not forgotten",
+            subtitle: "Beers from the past. No longer brewed but always in our hearts."
+        }
     ]
 
     setupBeerServiceMock()
     const { beers, error, isLoading } = useBeers()
 
     return (
-        <Container>
+        <Container className="beer-page">
             <div className="header">
                 <Typography className="title" variant={"h3"}>
                     Our Beers
@@ -40,6 +52,9 @@ const BeersPage: React.FC = () => {
                     )}
                 </Typography>
             </div>
+            <Typography className="subtitle" variant={"h6"}>
+                { categories.find( cat => cat.type === selectedTab )?.subtitle }
+            </Typography>
             <Grid container style={{padding:"1rem"}} spacing={4}>
                 { 
                     isLoading? <Skeleton variant="text" /> :
