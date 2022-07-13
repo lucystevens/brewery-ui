@@ -12,6 +12,7 @@ import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
 import OrderForm from 'components/pages/OrderForm/OrderForm';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
+import StoryPage from 'components/pages/StoryPage/StoryPage';
 
 function App() {
 
@@ -57,10 +58,10 @@ function App() {
               <TeamPage/>
             </Route>
             <Route path="/our-story">
-              <h1>Our Story</h1>
+              <StoryPage/>
             </Route>
             <Route path="/shop">
-              <h1>Shop</h1>
+              <ComingSoonPage/>
             </Route>
             <Route path="/">
               <HomePage></HomePage>
