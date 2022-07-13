@@ -45,5 +45,17 @@
         .title {
             font-weight: 600;
         }
+
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .beer-card .content {
+        .MuiTypography-root.name {
+            font-size: 2rem;
+        }
+        .MuiTypography-root.style {
+            font-size: 1.5rem;
+        }
     }
 }

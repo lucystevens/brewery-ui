@@ -2,12 +2,13 @@
     .header {
         display: flex;
         align-content: space-between;
+        align-items: center;
 
         .title {
             flex-grow: 1;
         }
         .menu {
-            padding: 28px;
+            padding: 1rem;
             span {
                 color: #777;
                 cursor: pointer;
@@ -25,5 +26,11 @@
 
     .subtitle {
         padding-left: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .beer-page .header {
+        flex-direction: column;
     }
 }

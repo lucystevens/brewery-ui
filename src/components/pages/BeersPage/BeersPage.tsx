@@ -36,7 +36,7 @@ const BeersPage: React.FC = () => {
     return (
         <Container className="beer-page">
             <div className="header">
-                <Typography className="title" variant={"h3"}>
+                <Typography className="title" variant={"h2"}>
                     Our Beers
                 </Typography>
                 <Typography className="menu" variant={"h5"}>
@@ -53,14 +53,14 @@ const BeersPage: React.FC = () => {
                 </Typography>
             </div>
             <Typography className="subtitle" variant={"h6"}>
-                { categories.find( cat => cat.type === selectedTab )?.subtitle }
+                <i>{ categories.find( cat => cat.type === selectedTab )?.subtitle }</i>
             </Typography>
             <Grid container style={{padding:"1rem"}} spacing={4}>
                 { 
                     isLoading? <Skeleton variant="text" /> :
                         beers? beers.map(b => 
                             b.category === selectedTab && 
-                            <Grid key={b.slug} item md={3} xs={6}>
+                            <Grid key={b.slug} item md={3} sm={6} xs={12}>
                                 <BeerDetailsCard beer={b} />
                             </Grid>
                         ) :

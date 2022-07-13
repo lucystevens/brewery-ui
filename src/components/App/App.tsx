@@ -64,7 +64,7 @@ function App() {
               <ComingSoonPage/>
             </Route>
             <Route path="/">
-              <HomePage></HomePage>
+              <HomePage/>
             </Route>
           </Switch>
       </Router>
