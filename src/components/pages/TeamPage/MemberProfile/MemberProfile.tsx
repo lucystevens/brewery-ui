@@ -37,20 +37,23 @@ const MemberProfile: React.FC<MemberProfileProps> =
 
     if(invert) {
         return (<>
-            <Grid item xs={9}>
+            <Grid item md={3} xs={12} className="image-card mobile">
+                {imageCard()}
+            </Grid>
+            <Grid item md={9} xs={12}>
                 { content() }
             </Grid>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={12} className="image-card desktop">
                 {imageCard()}
             </Grid>
         </>)
     }
     else {
         return (<>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={12}>
                 {imageCard()}
             </Grid>
-            <Grid item xs={9}>
+            <Grid item md={9} xs={12}>
                 { content() }
             </Grid>
         </>)

@@ -6,12 +6,12 @@ const StoryPage: React.FC = () => {
 
     return (
         <Container className="story-page">
-            <Typography className="title" variant={"h3"}>
+            <Typography className="title" variant={"h2"}>
                 Our Story
             </Typography>
             <Grid container className="our-story" spacing={2}>
 
-                <Grid item xs={9} className="content">
+                <Grid item md={9} sm={12} className="content">
                     <Typography variant="h3" gutterBottom>
                         Who we are
                     </Typography>
@@ -22,7 +22,7 @@ const StoryPage: React.FC = () => {
                         diverse range of styles from silly sours to hazy hopbombs and potent porters. 
                     </Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item md={3} sm={12}>
                     <Card className={"image-card"}>
                         <CardActionArea>
                             <CardMedia
@@ -35,8 +35,8 @@ const StoryPage: React.FC = () => {
 
                 <Grid item xs={12} className="separator"></Grid>
 
-                <Grid item xs={3}>
-                    <Card className={"image-card"}>
+                <Grid item md={3} sm={12}>
+                    <Card className="image-card desktop">
                         <CardActionArea>
                             <CardMedia
                                 component="img"
@@ -45,7 +45,7 @@ const StoryPage: React.FC = () => {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs={9} className="content">
+                <Grid item md={9} sm={12} className="content">
                     <Typography variant="h3" gutterBottom>
                         Where it began
                     </Typography>
@@ -58,10 +58,20 @@ const StoryPage: React.FC = () => {
                         granted a licence to brew commercially, and share our beer with the public for the first time. 
                     </Typography>
                 </Grid>
+                <Grid item md={3} sm={12}>
+                    <Card className="image-card mobile">
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt={"Cooling wort in a small bathtub"}
+                                image={"https://i.ibb.co/MDYqz2X/throwback-1.jpg"}/>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
 
                 <Grid item xs={12} className="separator"></Grid>
 
-                <Grid item xs={9} className="content">
+                <Grid item md={9} sm={12} className="content">
                     <Typography variant="h3" gutterBottom>
                         What's next
                     </Typography>
@@ -72,7 +82,7 @@ const StoryPage: React.FC = () => {
                         watch this space, and if you're a brewer who likes the sound of that then you know where to find us.
                     </Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item md={3} sm={12}>
                     <Card className={"image-card"}>
                         <CardActionArea>
                             <CardMedia

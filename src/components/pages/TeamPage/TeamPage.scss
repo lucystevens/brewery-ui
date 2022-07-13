@@ -1,14 +1,16 @@
-.title {
-    padding:16px;
-}
-.team-box{
-    padding: 16px;
-
-    .MuiTypography-root.MuiTypography-body1 {
-        margin-bottom: 16px;
+.team-page {
+    .title {
+        padding:16px;
     }
+    .team-box{
+        padding: 16px;
 
-    .separator {
-        border-bottom: 1px solid #ddd
+        .MuiTypography-root.MuiTypography-body1 {
+            margin-bottom: 16px;
+        }
+
+        .separator {
+            border-bottom: 1px solid #ddd
+        }
     }
 }

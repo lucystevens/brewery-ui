@@ -15,12 +15,27 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .image-card.mobile {
+            display: none;
+        }
+
         .content {
             padding: 20px;
         
             .MuiTypography-gutterBottom {
                 margin-bottom: 16px;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .story-page .our-story {
+        .image-card.desktop {
+            display: none;
+        }
+        .image-card.mobile {
+            display: block;
         }
     }
 }

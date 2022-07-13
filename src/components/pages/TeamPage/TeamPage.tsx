@@ -6,8 +6,8 @@ import './TeamPage.scss'
 const TeamPage: React.FC = () => {
 
     return (
-        <Container>
-            <Typography className="title" variant={"h3"}>
+        <Container className="team-page">
+            <Typography className="title" variant={"h2"}>
                 Meet the team
             </Typography>
             <Grid container className="team-box" spacing={2}>
