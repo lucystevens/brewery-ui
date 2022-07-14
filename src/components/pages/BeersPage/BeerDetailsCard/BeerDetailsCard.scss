@@ -1,3 +1,61 @@
-.tags {
-    margin-top: 0.5rem;
+.beer-card {
+    aspect-ratio: 1/1;
+    background-size: cover;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+
+    &:hover {
+        -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    &.flipped {
+        .content {
+            justify-content: start;
+            .name {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background-color: rgba(255, 255, 255, 0.4);
+        flex-grow: 1;
+        width: 100%;
+        text-align: center;
+
+        padding: 0px;
+        border-radius: 15px;
+
+        .title {
+            font-weight: 600;
+        }
+
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .beer-card .content {
+        .MuiTypography-root.name {
+            font-size: 2rem;
+        }
+        .MuiTypography-root.style {
+            font-size: 1.5rem;
+        }
+    }
 }

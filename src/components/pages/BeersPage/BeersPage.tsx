@@ -1,56 +1,74 @@
-import { Grid } from '@material-ui/core';
-import { FilterSharp } from '@material-ui/icons';
-import React, { useCallback, useEffect, useState } from 'react'
-import { useAccessCode, useService } from '../../../hooks/ApiHook';
-import Beer from '../../../models/Beer';
-import BeerService from '../../../services/BeerService';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { Category } from '@material-ui/icons';
+import { Skeleton } from '@material-ui/lab';
+import { BeerCategory } from 'models/Beer';
+import React, { useState } from 'react'
+import { setupBeerServiceMock } from 'services/BeerService/MockBeerService';
+import { useBeers } from '../../../hooks/ApiHook';
 import BeerDetailsCard from './BeerDetailsCard/BeerDetailsCard';
-import BeerFilter from './BeerFilter/BeerFilter';
+import "./BeerPage.scss"
 
 const BeersPage: React.FC = () => {
 
-    let code = useAccessCode()
+    const [selectedTab, selectTab] = useState<BeerCategory>(BeerCategory.CORE)
 
-    const makeRequest = useCallback(() => {
-        return new BeerService().getBeers();
-    }, [code]);
+    const categories = [
+        { 
+            type: BeerCategory.CORE,
+            name: "The Regulars",
+            subtitle: "Our core range - always there for you."
+        },
+        { 
+            type: BeerCategory.SEASONAL,
+            name: "Old Pals",
+            subtitle: "They might come and go but you have great fun together."
+        },
+        { 
+            type: BeerCategory.ARCHIVE, 
+            name: "Gone but not forgotten",
+            subtitle: "Beers from the past. No longer brewed but always in our hearts."
+        }
+    ]
 
-    const handleError = useCallback((error) => {
-        console.error(error)
-    }, []);
-
-    const [{ data, isLoading }] = useService(makeRequest, handleError);
-
-    const [filteredData, setFilteredData] = useState<Beer[]>()
-
-    useEffect(() => {
-        setFilteredData(data)
-    }, [data]);
-
-    const onFilterChange = useCallback((filters: ((beer: Beer) => boolean)[]) => {
-        setFilteredData(data?.filter(beer => 
-            filters.filter(filter => !filter(beer)).length == 0
-        ))
-    }, [data]);
+    setupBeerServiceMock()
+    const { beers, error, isLoading } = useBeers()
 
     return (
-        <Grid container style={{padding:"1rem"}}>
-            <Grid item xs={3} className="filter">
-                {!isLoading && data && 
-                    <BeerFilter beers={data} onFilterChange={onFilterChange}/>
+        <Container className="beer-page">
+            <div className="header">
+                <Typography className="title" variant={"h2"}>
+                    Our Beers
+                </Typography>
+                <Typography className="menu" variant={"h5"}>
+                    { categories.map((category, index) =>
+                        <>
+                            { index > 0 && <span> | </span> }
+                            <span 
+                                className={category.type === selectedTab? "selected" : ""} 
+                                onClick={() => selectTab(category.type)}>
+                                { category.name }
+                            </span>
+                        </>
+                    )}
+                </Typography>
+            </div>
+            <Typography className="subtitle" variant={"h6"}>
+                <i>{ categories.find( cat => cat.type === selectedTab )?.subtitle }</i>
+            </Typography>
+            <Grid container style={{padding:"1rem"}} spacing={4}>
+                { 
+                    isLoading? <Skeleton variant="text" /> :
+                        beers? beers.map(b => 
+                            b.category === selectedTab && 
+                            <Grid key={b.slug} item md={3} sm={6} xs={12}>
+                                <BeerDetailsCard beer={b} />
+                            </Grid>
+                        ) :
+                        error? <p >{ error.title }</p> :
+                        <p>Something went wrong</p>
                 }
             </Grid>
-            <Grid item xs={9} className="beers">
-                <Grid container spacing={2} justify="center">
-                {!isLoading && filteredData && 
-                    filteredData.map(beer => 
-                        <Grid item xs={6} sm={4} md={3} key={beer.slug}>
-                            <BeerDetailsCard beer={beer} key={beer.slug}></BeerDetailsCard>
-                        </Grid>
-                    )}
-                </Grid>
-            </Grid>
-      </Grid>  
+        </Container> 
     );
 
 };

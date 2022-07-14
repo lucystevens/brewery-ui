@@ -4,12 +4,12 @@ name: release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 env:
-  GH_USER: lukecmstevens
-  DOCKERHUB_USERNAME: lukecmstevens
+  GH_USER: lucystevens
+  DOCKERHUB_USERNAME: lucystevens
   PROJECT_NAME: brewery-ui
 
 jobs:
@@ -30,6 +30,15 @@ jobs:
 
       - name: Check environment variables
         run: echo "${{ env.PROJECT_NAME }}:${{ env.PROJECT_VERSION }}"
+
+      # TODO check project version against tag, must match
+
+      - name: Build site
+        run: |
+         npm install
+         npm run build
+         tar -czvf ${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.tar.gz build
+
 
       # Setup for docker build and push
 
@@ -56,3 +65,37 @@ jobs:
           tags: |
             ${{ env.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.PROJECT_VERSION }}
             ${{ env.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest
+
+      # deploy to server
+
+      - name: Deploy service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: deployer
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: /services/docker-deploy.sh ${{ env.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.PROJECT_VERSION }} -p 8002:80
+
+      # Create a release and upload the tar to it
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.PROJECT_VERSION }}
+          release_name: Release ${{ env.PROJECT_VERSION }}
+          body_path: changelog.md
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.tar.gz
+          asset_name: ${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.tar.gz
+          asset_content_type: application/gzip

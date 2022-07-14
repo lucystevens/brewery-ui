@@ -1,0 +1,36 @@
+.beer-page {
+    .header {
+        display: flex;
+        align-content: space-between;
+        align-items: center;
+
+        .title {
+            flex-grow: 1;
+        }
+        .menu {
+            padding: 1rem;
+            span {
+                color: #777;
+                cursor: pointer;
+
+                &.selected {
+                    color: #000;
+                }
+
+                &:hover {
+                    color: rgb(0, 118, 148)
+                }
+            }
+        }
+    }
+
+    .subtitle {
+        padding-left: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .beer-page .header {
+        flex-direction: column;
+    }
+}

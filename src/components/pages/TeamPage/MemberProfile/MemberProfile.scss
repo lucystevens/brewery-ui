@@ -1,0 +1,20 @@
+.content {
+    padding: 20px;
+
+    .MuiTypography-gutterBottom {
+        margin-bottom: 16px;
+    }
+}
+
+.image-card.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .image-card.desktop {
+        display: none;
+    }
+    .image-card.mobile {
+        display: block;
+    }
+}

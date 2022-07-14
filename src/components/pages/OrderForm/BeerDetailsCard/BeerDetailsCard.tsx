@@ -44,7 +44,7 @@ const BeerDetailsCard: React.FC<BeerDetailsCardProps> = ({ beer, onChangeQuantit
         </CardContent>
         <CardMedia
             className="card-image"
-            image={beer.logoUrl}
+            image={beer.iconUrl}
             title={beer.name}
           />
       </Card>
