@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import NavigationBar from '../NavigationBar';
 import {
   BrowserRouter as Router,
@@ -13,6 +13,7 @@ import OrderForm from 'components/pages/OrderForm/OrderForm';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';
+import Footer from 'components/Footer/Footer';
 
 function App() {
 
@@ -31,24 +32,25 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <NavigationBar 
-          options={[
-              {text: "Home", link: "/"},
-              {text: "About", dropdown: [
-                {text: "Meet the Team", link: "/meet-the-team"},
-                {text: "Our Story", link: "/our-story"}
-              ]},
-              {text: "Beers", dropdown: [
-                {text: "Our Beers", link: "/beers"},
-                {text: "People's Pint", link: "/peoples-pint"},
-                {text: "Events", link: "/events"}
-              ]},
-              {text: "Shop", link: "/shop"}
-          ]}>
-            <Box display={"flex"}>
-              <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
-            </Box>
-        </NavigationBar>
+        <div className="app">
+          <NavigationBar 
+            options={[
+                {text: "Home", link: "/"},
+                {text: "About", dropdown: [
+                  {text: "Meet the Team", link: "/meet-the-team"},
+                  {text: "Our Story", link: "/our-story"}
+                ]},
+                {text: "Beers", dropdown: [
+                  {text: "Our Beers", link: "/beers"},
+                  {text: "People's Pint", link: "/peoples-pint"},
+                  {text: "Events", link: "/events"}
+                ]},
+                {text: "Shop", link: "/shop"}
+            ]}>
+              <Box display={"flex"}>
+                <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+              </Box>
+          </NavigationBar>
 
           <Switch>
             <Route path="/beers">
@@ -64,9 +66,16 @@ function App() {
               <ComingSoonPage/>
             </Route>
             <Route path="/">
-              <HomePage/>
+              <div className="background">
+                <div className="mask">
+                  <HomePage/>
+                </div>
+              </div>
             </Route>
           </Switch>
+        </div>
+
+        <Footer/>
       </Router>
     </ThemeProvider>
   );

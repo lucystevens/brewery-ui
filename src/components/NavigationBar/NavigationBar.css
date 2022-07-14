@@ -51,17 +51,18 @@
 }
 
 .full-menu .menu-option .dropdown {
-  position: fixed;
+  position: absolute;
   display:flex;
   flex-direction:column;
   top: 6rem;
   background-color: black;
   align-items: end;
+  z-index: 10
 }
 
 .full-menu .menu-option .dropdown-icon {
   align-self: center;
-  position: fixed;
+  position: absolute;
   top: 5rem;
 }
 
