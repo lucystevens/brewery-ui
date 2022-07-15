@@ -13,6 +13,7 @@ import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';
 import Footer from 'components/Footer/Footer';
 import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
+import ShopPage from 'components/pages/ShopPage/ShopPage';
 
 function App() {
 
@@ -59,7 +60,7 @@ function App() {
               <StoryPage/>
             </Route>
             <Route path="/shop">
-              <ComingSoonPage/>
+              <ShopPage/>
             </Route>
             <Route path="/">
               <div className="background">
