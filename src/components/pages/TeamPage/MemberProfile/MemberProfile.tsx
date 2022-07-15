@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardMedia, Grid, Typography } from '@material-ui/core'
+import { Card, CardMedia, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import './MemberProfile.scss'
 
@@ -15,13 +15,11 @@ const MemberProfile: React.FC<MemberProfileProps> =
 
         const imageCard = () =>                 
             <Card className={"image-card"}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt={name}
-                        image={imageSrc}
-                        title={name}/>
-                </CardActionArea>
+                <CardMedia
+                    component="img"
+                    alt={name}
+                    image={imageSrc}
+                    title={name}/>
             </Card>
 
         const content = () =>

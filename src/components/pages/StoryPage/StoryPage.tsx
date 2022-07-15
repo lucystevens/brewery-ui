@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardMedia, Container, Grid, Typography } from '@material-ui/core';
+import { Card, CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import React from 'react'
 import './StoryPage.scss'
 
@@ -24,12 +24,10 @@ const StoryPage: React.FC = () => {
                 </Grid>
                 <Grid item md={3} sm={12}>
                     <Card className={"image-card"}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt={"Kegging beer in the current brewery"}
-                                image={"/images/brewery/brewery-1.jpg"}/>
-                        </CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={"Kegging beer in the current brewery"}
+                            image={"/images/brewery/brewery-1.jpg"}/>
                     </Card>
                 </Grid>
 
@@ -37,12 +35,10 @@ const StoryPage: React.FC = () => {
 
                 <Grid item md={3} sm={12}>
                     <Card className="image-card desktop">
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt={"Cooling wort in a small bathtub"}
-                                image={"/images/brewery/throwback-1.jpg"}/>
-                        </CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={"Cooling wort in a small bathtub"}
+                            image={"/images/brewery/throwback-1.jpg"}/>
                     </Card>
                 </Grid>
                 <Grid item md={9} sm={12} className="content">
@@ -60,12 +56,10 @@ const StoryPage: React.FC = () => {
                 </Grid>
                 <Grid item md={3} sm={12}>
                     <Card className="image-card mobile">
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt={"Cooling wort in a small bathtub"}
-                                image={"/images/brewery/throwback-1.jpg"}/>
-                        </CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={"Cooling wort in a small bathtub"}
+                            image={"/images/brewery/throwback-1.jpg"}/>
                     </Card>
                 </Grid>
 
@@ -84,12 +78,10 @@ const StoryPage: React.FC = () => {
                 </Grid>
                 <Grid item md={3} sm={12}>
                     <Card className={"image-card"}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt={"Closet Brewing Project sign on the brewery door"}
-                                image={"/images/brewery/brewery-3.jpg"}/>
-                        </CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={"Closet Brewing Project sign on the brewery door"}
+                            image={"/images/brewery/brewery-3.jpg"}/>
                     </Card>
                 </Grid>
             </Grid>
