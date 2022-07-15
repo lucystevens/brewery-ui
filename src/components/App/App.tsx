@@ -44,7 +44,9 @@ function App() {
                 {text: "Shop", link: "/shop"}
             ]}>
               <Box display={"flex"}>
-                <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+                <a href="/">
+                  <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+                </a>
               </Box>
           </NavigationBar>
 
