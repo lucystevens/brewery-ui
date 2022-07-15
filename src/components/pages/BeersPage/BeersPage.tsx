@@ -42,7 +42,7 @@ const BeersPage: React.FC = () => {
                     { categories.map((category, index) =>
                         <>
                             { index > 0 && <span> | </span> }
-                            <span 
+                            <span key={category.name}
                                 className={category.type === selectedTab? "selected" : ""} 
                                 onClick={() => selectTab(category.type)}>
                                 { category.name }
