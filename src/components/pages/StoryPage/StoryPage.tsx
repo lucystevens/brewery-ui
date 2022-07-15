@@ -28,7 +28,7 @@ const StoryPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 alt={"Kegging beer in the current brewery"}
-                                image={"https://i.ibb.co/27x6PH6/brewery-1.jpg"}/>
+                                image={"/images/brewery/brewery-1.jpg"}/>
                         </CardActionArea>
                     </Card>
                 </Grid>
@@ -41,7 +41,7 @@ const StoryPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 alt={"Cooling wort in a small bathtub"}
-                                image={"https://i.ibb.co/MDYqz2X/throwback-1.jpg"}/>
+                                image={"/images/brewery/throwback-1.jpg"}/>
                         </CardActionArea>
                     </Card>
                 </Grid>
@@ -64,7 +64,7 @@ const StoryPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 alt={"Cooling wort in a small bathtub"}
-                                image={"https://i.ibb.co/MDYqz2X/throwback-1.jpg"}/>
+                                image={"/images/brewery/throwback-1.jpg"}/>
                         </CardActionArea>
                     </Card>
                 </Grid>
@@ -88,7 +88,7 @@ const StoryPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 alt={"Closet Brewing Project sign on the brewery door"}
-                                image={"https://i.ibb.co/zGxTHBv/brewery-3.jpg"}/>
+                                image={"/images/brewery/brewery-3.jpg"}/>
                         </CardActionArea>
                     </Card>
                 </Grid>
