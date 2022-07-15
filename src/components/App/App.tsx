@@ -4,12 +4,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
 } from "react-router-dom";
-import { Box, createTheme, ThemeProvider, Typography } from '@material-ui/core';
+import { Box, createTheme, ThemeProvider } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
-import OrderForm from 'components/pages/OrderForm/OrderForm';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';

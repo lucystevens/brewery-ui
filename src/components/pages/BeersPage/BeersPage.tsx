@@ -1,5 +1,4 @@
 import { Container, Grid, Typography } from '@material-ui/core';
-import { Category } from '@material-ui/icons';
 import { Skeleton } from '@material-ui/lab';
 import { BeerCategory } from 'models/Beer';
 import React, { useState } from 'react'

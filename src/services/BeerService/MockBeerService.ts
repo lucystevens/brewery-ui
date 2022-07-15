@@ -82,12 +82,12 @@ const mockBeers: Beer[] = [
     }
 ]
 
-const mockError: ErrorResponse = {
+/*const mockError: ErrorResponse = {
     title: 'Something went wrong',
     status: 500,
     type: 'SERVER_ERROR',
     details: []
-}
+}*/
 
 
 export const setupBeerServiceMock = () => {

@@ -17,8 +17,6 @@ export interface NavigationOption {
     dropdown?: NavigationOption[]
 }
 
-// TODO add arrow & correct selected class for dropdown menu
-// also make mobile menu work with dropdowns
 const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,7 +56,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
     const isSelected = (option: NavigationOption): boolean => {
       if(location.pathname === option.link) return true
       else if(option.dropdown){
-        return option.dropdown.find(opt => isSelected(opt)) != undefined
+        return option.dropdown.find(opt => isSelected(opt)) !== undefined
       }
       else return false
     }

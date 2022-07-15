@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core'
+import { Card, CardActionArea, CardMedia, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import './MemberProfile.scss'
 
