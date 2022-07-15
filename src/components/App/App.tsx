@@ -38,11 +38,7 @@ function App() {
                   {text: "Meet the Team", link: "/meet-the-team"},
                   {text: "Our Story", link: "/our-story"}
                 ]},
-                {text: "Beers", dropdown: [
-                  {text: "Our Beers", link: "/beers"},
-                  {text: "People's Pint", link: "/peoples-pint"},
-                  {text: "Events", link: "/events"}
-                ]},
+                {text: "Beers", link: "/beers"},
                 {text: "Shop", link: "/shop"}
             ]}>
               <Box display={"flex"}>
