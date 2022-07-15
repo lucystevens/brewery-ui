@@ -92,7 +92,6 @@ jobs:
         with:
           tag_name: v${{ env.PROJECT_VERSION }}
           release_name: Release ${{ env.PROJECT_VERSION }}
-          body_path: changelog.md
 
       - name: Upload Release Asset
         id: upload-release-asset
