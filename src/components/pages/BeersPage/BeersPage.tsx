@@ -35,7 +35,7 @@ const BeersPage: React.FC = () => {
     return (
         <Container className="beer-page">
             <div className="header">
-                <Typography className="title" variant={"h2"}>
+                <Typography className="page-title" variant={"h2"}>
                     Our Beers
                 </Typography>
                 <Typography className="menu" variant={"h5"}>

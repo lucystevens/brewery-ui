@@ -7,7 +7,7 @@ const TeamPage: React.FC = () => {
 
     return (
         <Container className="team-page">
-            <Typography className="title" variant={"h2"}>
+            <Typography className="page-title" variant={"h2"}>
                 Meet the team
             </Typography>
             <Grid container className="team-box" spacing={2}>

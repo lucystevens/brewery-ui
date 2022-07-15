@@ -6,7 +6,7 @@ import './HomePage.scss'
 const HomePage: React.FC = () => {
 
     return (
-        <Container>
+        <Container maxWidth={"md"}>
             <Box className="homepage-box">
                 <Typography className="title" variant={"h1"}>
                     This is Closet Brewing Project

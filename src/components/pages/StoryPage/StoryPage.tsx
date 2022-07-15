@@ -6,7 +6,7 @@ const StoryPage: React.FC = () => {
 
     return (
         <Container className="story-page">
-            <Typography className="title" variant={"h2"}>
+            <Typography className="page-title" variant={"h2"}>
                 Our Story
             </Typography>
             <Grid container className="our-story" spacing={2}>
