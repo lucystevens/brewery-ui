@@ -82,17 +82,17 @@ const mockBeers: Beer[] = [
     }
 ]
 
-/*const mockError: ErrorResponse = {
+const mockError: ErrorResponse = {
     title: 'Something went wrong',
     status: 500,
     type: 'SERVER_ERROR',
     details: []
-}*/
+}
 
 
 export const setupBeerServiceMock = () => {
   const mock = new MockAdapter(axios);
   mock.onGet(`/api/beer`).reply(200, mockBeers);
-  //mock.onGet(`/api/beer`).reply(500, mockError);
+  mock.onGet(`/api/beer/error`).reply(500, mockError);
   return mock;
 };
