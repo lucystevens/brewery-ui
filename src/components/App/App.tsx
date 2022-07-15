@@ -12,6 +12,7 @@ import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';
 import Footer from 'components/Footer/Footer';
+import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <AgeVerificationDialog/>
         <div className="app">
           <NavigationBar 
             options={[
