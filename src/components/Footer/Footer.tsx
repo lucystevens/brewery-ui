@@ -12,15 +12,6 @@ const Footer: React.FC = () => {
             <Grid item lg={2} md={3} sm={4} xs={6} className="logo-credit">
                 Logo by Sam Westwood
             </Grid>
-            <Grid item lg={2} md={3} sm={4} xs={6} className="shipping-policy">
-                Shipping Policy
-            </Grid>
-            <Grid item lg={2} md={3} sm={4} xs={6} className="privacy-policy">
-                Privacy Policy
-            </Grid>
-            <Grid item lg={2} md={3} sm={4} xs={6} className="toc">
-                Terms of Service
-            </Grid>
             <Grid item lg={2} md={3} sm={4} xs={6} className="contact">
                 <a target="_blank" rel="noreferrer" href="https://us9.list-manage.com/contact-form?u=d8d22d02a5013739b8376d3f0&form_id=4743b5beebdda103bc1accd791577b03">Contact Us</a>
             </Grid>
