@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { Box, createTheme, ThemeProvider } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
-import ComingSoonPage from '../ComingSoonPage/ComingSoonPage';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';
