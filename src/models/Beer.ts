@@ -14,9 +14,9 @@ interface Beer {
 }
 
 export enum BeerCategory {
-    CORE,
-    SEASONAL,
-    ARCHIVE
+    CORE = "CORE",
+    SEASONAL = "SEASONAL",
+    ARCHIVE = "ARCHIVE"
 }
 
 export default Beer;

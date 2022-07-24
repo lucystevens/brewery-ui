@@ -72,7 +72,7 @@ const mockBeers: Beer[] = [
         abv: 7.2,
         iconUrl: "/images/beers/goat-icon.png",
         description: `A 7.2% dopplebock. It is a strong, malty, German lager, a full-bodied gal, and the perfect antidote for our chilly Scottish nights. 
-        The best time to drink this lager is in the early weeks of spring or the final weeks of autumn, when the sun is out and shining but you still need to wrap up in a few layers. `,
+        The best time to drink this lager is in the early weeks of spring or the final weeks of autumn, when the sun is out and shining but you still need to wrap up in a few layers.`,
         style: "Doppelbock",
         tags: ["malty", "rich", "lager"],
         quantityAvailable: 0,

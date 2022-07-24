@@ -2,7 +2,6 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { BeerCategory } from 'models/Beer';
 import React, { useState } from 'react'
-import { setupBeerServiceMock } from 'services/BeerService/MockBeerService';
 import { useBeers } from '../../../hooks/ApiHook';
 import BeerDetailsCard from './BeerDetailsCard/BeerDetailsCard';
 import "./BeerPage.scss"
@@ -29,7 +28,6 @@ const BeersPage: React.FC = () => {
         }
     ]
 
-    setupBeerServiceMock()
     const { beers, error, isLoading } = useBeers()
 
     return (

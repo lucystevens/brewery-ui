@@ -12,32 +12,31 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - "db-schemas"
+      - "local-db"
       - "brewery-api"
       - "api-proxy"
-  db-schemas:
-    image: lukecmstevens/db-schemas:latest
+  local-db:
+    image: lucystevens/brewery-api-schema:latest
     expose:
       - 5432
     ports:
       - "9001:5432"
-    hostname: db-schemas
+    hostname: local-db
   brewery-api:
-    image: lukecmstevens/brewery-api:latest
+    image: lucystevens/brewery-api:latest
     expose:
       - 8000
     ports:
       - "8000:8000"
     environment:
     - APP_PORT=8000
-    - DATABASE_URL=jdbc:postgresql://db-schemas:5432/postgres
+    - DATABASE_URL=jdbc:postgresql://local-db:5432/postgres
     - DATABASE_USERNAME=postgres
     - DATABASE_PASSWORD=password
-    - APPLICATION_VERSION=0.0.1-test
-    - APPLICATION_NAME=brewery-api
+    restart: on-failure
     hostname: brewery-api
     depends_on:
-      - "db-schemas"
+      - "local-db"
   api-proxy:
     image: haproxy-docker
     ports:
