@@ -46,7 +46,7 @@ const MailingListSignup: React.FC = () => {
                     Thanks for your email!
                 </Typography>
                 <Typography variant="subtitle1" className="signup-complete-sub">
-                    We promise we won't do anything nefarious with it
+                    We promise we won't do anything nefarious with it.
                 </Typography>
             </> :
             <>

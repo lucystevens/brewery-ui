@@ -13,7 +13,7 @@ const ShopPage: React.FC = () => {
             <Typography className="description" variant={"h5"}>
                 We're currently hard at work brewing beers for you! 
                 Our first two beers, Lost in the Sauce and Mieter*innen,
-                will launch on <b>21st August</b>. See you then!
+                will launch on <b>21st August at 10am BST</b>. See you then!
             </Typography>
             <Card className={"image-card"}>
                 <CardMedia
