@@ -26,7 +26,7 @@ const MailingListSignup: React.FC = () => {
     const submit = () => {
         if(emailRegex.test(email)){
             setState("SUBMITTING")
-            axios.post("/api/users/mailing-list", { "email": email })
+            axios.post("/api/users/mailer", { "email": email })
             .then(() => setState("SUBMITTED"))
             .catch(e => {
                 setError(e.response.data)
