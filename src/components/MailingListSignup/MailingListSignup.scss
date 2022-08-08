@@ -1,0 +1,18 @@
+.mailing-list-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    .MuiTypography-root.signup-title, .MuiTypography-root.signup-description, .form-submit {
+        margin: 0.5rem;
+    }
+
+    .MuiTypography-root.signup-tandc {
+        max-width:50%;
+    }
+
+    .textfield-wrapper {
+        min-width: 50%;
+    }
+}

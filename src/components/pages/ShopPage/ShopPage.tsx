@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, Container, Typography } from '@material-ui/core';
 import './ShopPage.scss';
+import MailingListSignup from 'components/MailingListSignup/MailingListSignup';
 
 const ShopPage: React.FC = () => {
 
@@ -21,6 +22,7 @@ const ShopPage: React.FC = () => {
                     image={"/images/brewery/cans-1.jpg"}
                     title={"Two beer cans in the brewery"}/>
             </Card>
+            <MailingListSignup />
         </Container>
     )
 
