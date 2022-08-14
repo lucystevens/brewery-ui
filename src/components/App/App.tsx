@@ -4,7 +4,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useHistory,
 } from "react-router-dom";
+import { init } from '@amplitude/analytics-browser';
 import { Box, createTheme, ThemeProvider } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
@@ -13,24 +15,13 @@ import StoryPage from 'components/pages/StoryPage/StoryPage';
 import Footer from 'components/Footer/Footer';
 import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
 import ShopPage from 'components/pages/ShopPage/ShopPage';
+import { usePageViews } from 'hooks/AnalyticsHook';
 
 function App() {
 
-  const theme = createTheme({
-    typography: {
-      fontFamily: [
-        "Oswald",
-        "Roboto",
-        "Helvetica Neue",
-        "Arial",
-        "sans-serif"
-      ].join(",")
-    }
-  });
+  usePageViews()
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Router>
+  return (<>
         <AgeVerificationDialog/>
         <div className="app">
           <NavigationBar 
@@ -74,8 +65,7 @@ function App() {
         </div>
 
         <Footer/>
-      </Router>
-    </ThemeProvider>
+        </>
   );
 }
 

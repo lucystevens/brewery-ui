@@ -102,7 +102,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
 
         <Box className="full-menu">
             {options.map(option => 
-              <div className="menu-option">
+              <div className="menu-option" key={option.text}>
                 { optionButton(option) }
                 { option.dropdown && <ArrowDropDownIcon className="dropdown-icon" />}
                 { dropdownAnchor === option.text && 
@@ -117,10 +117,14 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
           <IconButton onClick={toggleMenu}>
             <MenuIcon style={{fontSize: "3rem", color: "white"}} />
           </IconButton>
-          <Drawer className="side-menu" anchor={"right"} open={menuOpen} onClose={() => setMenuOpen(false)}>
+          <Drawer 
+            className="side-menu"
+            anchor={"right"}
+            open={menuOpen}
+            onClose={() => setMenuOpen(false)}>
             <List>
-              {options.map((option) => (<>
-                <ListItem button onClick={(e) => handleOnClick(option, e)} key={option.text}>
+              {options.map((option) => (<React.Fragment key={option.text}>
+                <ListItem button onClick={(e) => handleOnClick(option, e)}>
                   <ListItemText 
                     className={getOptionClasses(option)}
                     primary={option.text.toUpperCase()} />
@@ -135,7 +139,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
                     </ListItem>
                   )}
                 </div>
-              </>))}
+              </React.Fragment>))}
             </List>
           </Drawer>
         </Box>
