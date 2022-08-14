@@ -1,10 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@material-ui/core';
-import { init } from '@amplitude/analytics-browser';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { setupAnalytics } from 'hooks/AnalyticsHook';
 

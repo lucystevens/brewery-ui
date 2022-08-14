@@ -1,13 +1,10 @@
 import './App.scss';
 import NavigationBar from '../NavigationBar';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
 } from "react-router-dom";
-import { init } from '@amplitude/analytics-browser';
-import { Box, createTheme, ThemeProvider } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';

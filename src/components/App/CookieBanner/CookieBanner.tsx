@@ -16,8 +16,6 @@ const CookieBanner: React.FC = () => {
         setOpen(false)
     }
 
-    const doNothing = () => { }
-
     return (
       <Drawer
       variant="persistent"

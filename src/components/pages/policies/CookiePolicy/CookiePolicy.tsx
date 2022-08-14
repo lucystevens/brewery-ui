@@ -1,4 +1,4 @@
-import { Card, CardMedia, Container, Grid, List, ListItem, Typography } from '@material-ui/core';
+import { Container, Grid, List, ListItem, Typography } from '@material-ui/core';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import React, { useState } from 'react'
 import { getCookiePrefs, setCookiePrefs } from 'services/CookieService/CookieService';
