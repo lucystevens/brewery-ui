@@ -16,6 +16,7 @@ import Footer from 'components/Footer/Footer';
 import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
 import ShopPage from 'components/pages/ShopPage/ShopPage';
 import { usePageViews } from 'hooks/AnalyticsHook';
+import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
 
 function App() {
 
@@ -42,6 +43,8 @@ function App() {
           </NavigationBar>
 
           <Switch>
+
+            
             <Route path="/beers">
               <BeersPage/>
             </Route>
@@ -54,6 +57,11 @@ function App() {
             <Route path="/shop">
               <ShopPage/>
             </Route>
+
+            <Route path="/cookie-policy">
+              <CookiePolicy/>
+            </Route>
+
             <Route path="/">
               <div className="background">
                 <div className="mask">

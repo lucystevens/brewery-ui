@@ -1,9 +1,8 @@
 import {  useEffect } from 'react'
 import {  useLocation } from 'react-router-dom'
-import Cookies from 'js-cookie';
-import { v4 as uuidv4 } from 'uuid';
 import { isDev } from 'utils/WebUtils';
 import { init, track } from '@amplitude/analytics-browser';
+import { getSessionId, getUserId } from 'services/CookieService/CookieService';
 
 export const usePageViews = () => {
   let location = useLocation()
@@ -22,28 +21,10 @@ export const usePageViews = () => {
 }
 
 export const setupAnalytics = () => {
-    init("6b4c99b57541ac5109fc2da3a3ebe1a0", getUserId(), {
-        disableCookies: true
-    })
-}
-
-const userIdKey = "cbpUserId"
-const sessionIdKey = "cbpSessionId"
-
-export const getUserId = (): string => {
-    var userId = Cookies.get(userIdKey)
-    if(!userId){
-        userId = isDev()? "test-user" : uuidv4()
-        Cookies.set(userIdKey, userId, { expires: 365 })
+    if(!isDev()){
+        init("6b4c99b57541ac5109fc2da3a3ebe1a0", getUserId(), {
+            disableCookies: true
+        })
     }
-    return userId
 }
 
-export const getSessionId = (): string => {
-    var sessionId = Cookies.get(sessionIdKey)
-    if(!sessionId){
-        sessionId = uuidv4()
-        Cookies.set(sessionIdKey, sessionId)
-    }
-    return sessionId
-}
