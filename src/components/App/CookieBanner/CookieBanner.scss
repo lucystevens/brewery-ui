@@ -1,0 +1,12 @@
+.cookie-banner {
+    display: flex;
+    background: black;
+    color: white;
+    justify-content: space-between;
+    padding: 2px 0.5rem;
+    align-items: center;
+
+    .cookie-buttons button{
+        margin: 10px
+    }
+}

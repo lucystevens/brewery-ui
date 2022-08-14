@@ -17,6 +17,7 @@ import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog
 import ShopPage from 'components/pages/ShopPage/ShopPage';
 import { usePageViews } from 'hooks/AnalyticsHook';
 import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
+import CookieBanner from './CookieBanner/CookieBanner';
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
 
   return (<>
         <AgeVerificationDialog/>
+        <CookieBanner/>
+
         <div className="app">
           <NavigationBar 
             options={[

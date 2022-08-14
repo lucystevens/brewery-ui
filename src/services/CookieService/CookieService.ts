@@ -3,20 +3,30 @@ import { isDev } from "utils/WebUtils"
 import { v4 as uuidv4 } from 'uuid';
 import CookiePrefs from "./CookiePrefs";
 
+// Local storage
 const cookiePrefsKey = "cbpCookiePrefs"
-const userIdKey = "cbpUserId"
-const sessionIdKey = "cbpSessionId"
+const cookieBannerKey = "cookieBannerDismissed"
 
 export const setCookiePrefs = (prefs: CookiePrefs) => {
-    Cookies.set(cookiePrefsKey, 
-        JSON.stringify(prefs), 
-        { expires: 365, sameSite: "Lax" })
+    localStorage.setItem(cookiePrefsKey, JSON.stringify(prefs))
 }
 
 export const getCookiePrefs = (): CookiePrefs => {
-    let prefs = Cookies.get(cookiePrefsKey)
+    let prefs = localStorage.getItem(cookiePrefsKey)
     return prefs? JSON.parse(prefs) : { analyticsAllowed: false }
 }
+
+export const showCookieBanner = (): boolean => {
+    return localStorage.getItem(cookieBannerKey) !== "true"
+}
+
+export const dismissCookieBanner = () => {
+    localStorage.setItem(cookieBannerKey, "true")
+}
+
+// Cookies
+const userIdKey = "cbpUserId"
+const sessionIdKey = "cbpSessionId"
 
 export const getUserId = (): string => {
     var userId = Cookies.get(userIdKey)
