@@ -1,11 +1,31 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { setupAnalytics } from 'hooks/AnalyticsHook';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      "Oswald",
+      "Roboto",
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif"
+    ].join(",")
+  }
+});
+
+setupAnalytics()
 
 ReactDOM.render(
-    <App />,
+  <ThemeProvider theme={theme}>
+  <Router>
+    <App />
+    </Router>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 

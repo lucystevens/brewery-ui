@@ -1,11 +1,10 @@
 import './App.scss';
 import NavigationBar from '../NavigationBar';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import { Box, createTheme, ThemeProvider } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import HomePage from '../pages/HomePage/HomePage';
 import TeamPage from 'components/pages/TeamPage/TeamPage';
 import BeersPage from 'components/pages/BeersPage/BeersPage';
@@ -13,25 +12,18 @@ import StoryPage from 'components/pages/StoryPage/StoryPage';
 import Footer from 'components/Footer/Footer';
 import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
 import ShopPage from 'components/pages/ShopPage/ShopPage';
+import { usePageViews } from 'hooks/AnalyticsHook';
+import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
+import CookieBanner from './CookieBanner/CookieBanner';
 
 function App() {
 
-  const theme = createTheme({
-    typography: {
-      fontFamily: [
-        "Oswald",
-        "Roboto",
-        "Helvetica Neue",
-        "Arial",
-        "sans-serif"
-      ].join(",")
-    }
-  });
+  usePageViews()
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Router>
+  return (<>
         <AgeVerificationDialog/>
+        <CookieBanner/>
+
         <div className="app">
           <NavigationBar 
             options={[
@@ -51,6 +43,8 @@ function App() {
           </NavigationBar>
 
           <Switch>
+
+            
             <Route path="/beers">
               <BeersPage/>
             </Route>
@@ -63,6 +57,11 @@ function App() {
             <Route path="/shop">
               <ShopPage/>
             </Route>
+
+            <Route path="/cookie-policy">
+              <CookiePolicy/>
+            </Route>
+
             <Route path="/">
               <div className="background">
                 <div className="mask">
@@ -74,8 +73,7 @@ function App() {
         </div>
 
         <Footer/>
-      </Router>
-    </ThemeProvider>
+        </>
   );
 }
 

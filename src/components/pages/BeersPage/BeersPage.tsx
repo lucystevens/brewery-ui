@@ -38,14 +38,14 @@ const BeersPage: React.FC = () => {
                 </Typography>
                 <Typography className="menu" variant={"h5"}>
                     { categories.map((category, index) =>
-                        <>
+                        <React.Fragment key={category.name}>
                             { index > 0 && <span> | </span> }
                             <span key={category.name}
                                 className={category.type === selectedTab? "selected" : ""} 
                                 onClick={() => selectTab(category.type)}>
                                 { category.name }
                             </span>
-                        </>
+                        </React.Fragment>
                     )}
                 </Typography>
             </div>
