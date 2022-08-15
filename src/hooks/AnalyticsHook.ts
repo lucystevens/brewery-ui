@@ -14,7 +14,6 @@ export const usePageViews = () => {
             path: location.pathname,
             referrer: document.referrer
         })
-        console.log(document.referrer)
     },
     [location]
   )

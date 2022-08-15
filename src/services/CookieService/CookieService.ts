@@ -39,7 +39,7 @@ const newUserId = (): string => {
 }
 
 const setLocalUserId = (userId: string) => {
-    Cookies.set(userIdKey, userId, { expires: 365 })
+    Cookies.set(userIdKey, userId, { expires: 365, sameSite: "lax" })
 }
 
 export const getUserId = (): string => {
@@ -51,6 +51,9 @@ export const getUserId = (): string => {
     return userId
 }
 
+const setLocalSessionId = (sessionId: string) => {
+    Cookies.set(sessionIdKey, sessionId, { sameSite: "lax" })
+}
 
 const newSessionId = (): string => {
     return getCookiePrefs().analyticsAllowed? uuidv4() : anonymous
@@ -60,7 +63,7 @@ export const getSessionId = (): string => {
     var sessionId = Cookies.get(sessionIdKey)
     if(!sessionId){
         sessionId = newSessionId()
-        Cookies.set(sessionIdKey, sessionId)
+        setLocalSessionId(sessionId)
     }
     return sessionId
 }
@@ -68,8 +71,8 @@ export const getSessionId = (): string => {
 // cookie utils
 export const applyCookiePrefs = (prefs: CookiePrefs) => {
     if(!prefs.analyticsAllowed){
-        Cookies.set(userIdKey, anonymous, { expires: 365 })
-        Cookies.set(sessionIdKey, anonymous)
+        setLocalUserId(anonymous)
+        setLocalSessionId(anonymous)
         reset()
     }
     else {
@@ -81,7 +84,7 @@ export const applyCookiePrefs = (prefs: CookiePrefs) => {
         }
         let sessionId = getSessionId()
         if(sessionId === anonymous){
-            Cookies.set(sessionIdKey, newSessionId())
+            setLocalSessionId(newSessionId())
         }
     }
 }
