@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core';
 import './Footer.scss';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
 
@@ -14,6 +15,9 @@ const Footer: React.FC = () => {
             </Grid>
             <Grid item lg={2} md={3} sm={4} xs={6} className="contact">
                 <a target="_blank" rel="noreferrer" href="https://us9.list-manage.com/contact-form?u=d8d22d02a5013739b8376d3f0&form_id=4743b5beebdda103bc1accd791577b03">Contact Us</a>
+            </Grid>
+            <Grid item lg={2} md={3} sm={4} xs={6} className="cookie-policy">
+                <Link to="/cookie-policy">Cookie policy</Link>
             </Grid>
         </Grid>
     )
