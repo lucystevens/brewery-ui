@@ -37,7 +37,7 @@ function App() {
             ]}>
               <Box display={"flex"}>
                 <a href="/">
-                  <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+                  <img className="logo" alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
                 </a>
               </Box>
           </NavigationBar>
@@ -63,11 +63,7 @@ function App() {
             </Route>
 
             <Route path="/">
-              <div className="background">
-                <div className="mask">
-                  <HomePage/>
-                </div>
-              </div>
+              <HomePage/>
             </Route>
           </Switch>
         </div>

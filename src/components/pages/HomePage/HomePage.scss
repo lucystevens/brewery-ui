@@ -1,6 +1,63 @@
+.app .background {
+    flex: 1 0 auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 80vh;
+
+    .mask {
+        height: 100%;
+        background-color: rgba(255,255,255,0.5);
+    }
+}
+
+.homepage-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    &.v-top {
+        justify-content: flex-start;
+    }
+
+    &.v-center {
+        justify-content: center;
+    }
+
+    &.v-bottom {
+        justify-content: flex-end;
+    }
+
+    &.h-left {
+        align-items: flex-start;
+    }
+
+    &.h-center {
+        align-items: center;
+    }
+
+    &.h-right {
+        align-items: flex-end;
+    }
+}
+
 .homepage-box {
-    text-align: center;
-    padding-top: 20vh;
+    width: 60%;
+    padding: 1rem;
+
+    &.align-left {
+        text-align: left;
+    }
+
+    &.align-center {
+        text-align: center;
+    }
+
+    &.align-right {
+        text-align: right;
+    }
 
     .MuiTypography-h1.title {
         font-family: "Crossfit-Bold";
@@ -20,12 +77,15 @@
     .MuiTypography-h3.motto {
         font-family: "Crossfit-Bold";
         margin-top: 1rem;
-        padding-bottom: 20vh;
     }
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1366px) {
+    .homepage-box {
+        width: 75%;
+    }
+    
     .MuiTypography-root.MuiTypography-h1 {
         font-size: 4rem;
     }
@@ -45,7 +105,7 @@
 
 @media (max-width: 425px) {
     .homepage-box {
-        padding-top: 10vh;
+        width: 90%;
     }
 
     .MuiTypography-root.MuiTypography-h1 {
