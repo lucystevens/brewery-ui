@@ -1,12 +1,13 @@
-import { Box, Button, Container, Fade, Typography } from '@material-ui/core';
-import React, { ReactNode, useEffect, useState } from 'react'
-import { setInterval } from 'timers';
+import { Box, Button, Typography } from '@material-ui/core';
+import React, { ReactNode, useMemo } from 'react'
+import Carousel from 'react-material-ui-carousel';
 import './HomePage.scss'
 
+interface HomePageProps {
+    shopEnabled: boolean;
+}
 
-const HomePage: React.FC = () => {
-
-    const [contentIndex, setContentIndex] = useState(1)
+const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
 
     const landingPage = () => {
         return (
@@ -53,40 +54,36 @@ const HomePage: React.FC = () => {
         )
     }
 
-    const content: Content[] = [
+    const content: Content[] = useMemo(() => [
         {
+            key: "default",
             background: "images/backgrounds/brewery-bg-col.jpg",
-            content: landingPage
+            render: landingPage
         },{
+            key: "new-arrivals",
             background: "images/backgrounds/can-bg-col.jpg",
-            content: newReleases
+            render: newReleases
         }
-    ]
+    ], [])
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setContentIndex((contentIndex+1)%content.length)
-        }, 5000);
-      
-        return () => clearInterval(intervalId);
-      }, []);
-    
-
-    const currentContent = () => content[contentIndex]
-
-    return (
-        <div className="background" style={{backgroundImage: `url(${currentContent().background})`}}>
-            <div className="mask">
-                { currentContent().content() }
-            </div>
+    const generateContent = (content: Content): ReactNode => 
+    <div key={content.key} className="background" style={{backgroundImage: `url(${content.background})`}}>
+        <div className="mask">
+            { content.render() }
         </div>
-    );
+    </div>
+    
+    return (<> { shopEnabled? <Carousel indicators={false}>
+            { content.map(generateContent) }
+        </Carousel> : generateContent(content[0]) }
+        </>);
 
 };
 
 export interface Content {
+    key: string,
     background: string,
-    content: () => ReactNode
+    render: () => ReactNode
 }
 
 export default HomePage;

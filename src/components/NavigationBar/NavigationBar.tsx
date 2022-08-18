@@ -32,7 +32,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
       }
 
       if(option.link) {
-        history.push(option.link)
+        if(option.link.startsWith("http")){
+          window.open(option.link)
+        }
+        else {
+          history.push(option.link)
+        }
         setMenuOpen(false)
       }
 
