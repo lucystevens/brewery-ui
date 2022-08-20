@@ -81,6 +81,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
     return (<> { shopEnabled? <Carousel autoPlay={false} indicators={false} navButtonsProps={{className:"nav-btn", style:{}}}>
             { content.map(generateContent) }
         </Carousel> : generateContent(content[0]) }
+        { shopEnabled? <MailingListSignup /> : "" }
         </>);
 
 };
