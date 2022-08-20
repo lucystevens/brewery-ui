@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from '@material-ui/core';
+import MailingListSignup from 'components/MailingListSignup/MailingListSignup';
 import React, { ReactNode, useMemo } from 'react'
 import Carousel from 'react-material-ui-carousel';
 import './HomePage.scss'
@@ -46,7 +47,11 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
                     <Typography className="subtitle" variant={"h2"}>
                         Lost in the Sauce and Mieter*innen
                     </Typography>
-                    <Button className="shop" variant="contained" color="primary">
+                    <Button className="shop" 
+                        variant="contained" 
+                        color="primary" 
+                        href="https://shop.closetbrewingproject.co.uk"
+                        target="_blank">
                         Shop latest releases
                     </Button>
                 </Box>
@@ -73,7 +78,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
         </div>
     </div>
     
-    return (<> { shopEnabled? <Carousel indicators={false}>
+    return (<> { shopEnabled? <Carousel autoPlay={false} indicators={false} navButtonsProps={{className:"nav-btn", style:{}}}>
             { content.map(generateContent) }
         </Carousel> : generateContent(content[0]) }
         </>);

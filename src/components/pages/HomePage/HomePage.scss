@@ -15,6 +15,10 @@
     display: flex;
 }
 
+.nav-btn {
+    opacity: 0.4;
+}
+
 .homepage-container {
     height: 100%;
     width: 100%;
@@ -68,6 +72,7 @@
     }
 
     .MuiTypography-h2.subtitle {
+        margin-bottom: 2rem;
         font-family: 'Oswald', sans-serif;
         color: #434343;
         font-style: italic;
