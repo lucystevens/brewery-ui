@@ -21,11 +21,11 @@ const BeersPage: React.FC = () => {
             name: "Old Pals",
             subtitle: "They might come and go but you have great fun together."
         },
-        { 
+        /*{ -- Temporarily removed
             type: BeerCategory.ARCHIVE, 
             name: "Gone but not forgotten",
             subtitle: "Beers from the past. No longer brewed but always in our hearts."
-        }
+        }*/
     ]
 
     const { beers, error, isLoading } = useBeers()

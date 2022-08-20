@@ -15,10 +15,20 @@ import ShopPage from 'components/pages/ShopPage/ShopPage';
 import { usePageViews } from 'hooks/AnalyticsHook';
 import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
 import CookieBanner from './CookieBanner/CookieBanner';
+import { useConfig } from 'hooks/ApiHook';
 
 function App() {
 
   usePageViews()
+  const {value, error} = useConfig("shopEnabled", "false")
+
+  const shopEnabled = (): boolean => {
+    if(error) console.error(error)
+    return value === "true"
+  }
+
+  const shopLink = (): string => 
+    shopEnabled()? "https://shop.closetbrewingproject.co.uk/" : "/shop"
 
   return (<>
         <AgeVerificationDialog/>
@@ -33,11 +43,11 @@ function App() {
                   {text: "Our Story", link: "/our-story"}
                 ]},
                 {text: "Beers", link: "/beers"},
-                {text: "Shop", link: "/shop"}
+                {text: "Shop", link: shopLink()}
             ]}>
               <Box display={"flex"}>
                 <a href="/">
-                  <img style={{height: "6rem", marginRight: "1rem"}} alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
+                  <img className="logo" alt="CBP logo" src="/images/cbp-text-logo-inverse.png"/>
                 </a>
               </Box>
           </NavigationBar>
@@ -63,11 +73,7 @@ function App() {
             </Route>
 
             <Route path="/">
-              <div className="background">
-                <div className="mask">
-                  <HomePage/>
-                </div>
-              </div>
+              <HomePage shopEnabled={shopEnabled()}/>
             </Route>
           </Switch>
         </div>

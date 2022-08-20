@@ -32,7 +32,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
       }
 
       if(option.link) {
-        history.push(option.link)
+        if(option.link.startsWith("http")){
+          window.open(option.link)
+        }
+        else {
+          history.push(option.link)
+        }
         setMenuOpen(false)
       }
 
@@ -115,7 +120,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({options, children}) => {
 
         <Box className="small-menu" >
           <IconButton onClick={toggleMenu}>
-            <MenuIcon style={{fontSize: "3rem", color: "white"}} />
+            <MenuIcon style={{fontSize: "2rem", color: "white"}} />
           </IconButton>
           <Drawer 
             className="side-menu"
