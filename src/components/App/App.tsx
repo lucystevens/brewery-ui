@@ -20,7 +20,7 @@ import { useConfig } from 'hooks/ApiHook';
 function App() {
 
   usePageViews()
-  const {value, error} = useConfig("shopEnabled", "false")
+  const {value, error} = useConfig("shopEnabled", "true")
 
   const shopEnabled = (): boolean => {
     if(error) console.error(error)

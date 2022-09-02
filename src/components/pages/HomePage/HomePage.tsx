@@ -45,7 +45,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
                         New Arrivals
                     </Typography>
                     <Typography className="subtitle" variant={"h2"}>
-                        Lost in the Sauce and Mieter*innen
+                        Vampire Spa Day
                     </Typography>
                     <Button className="shop" 
                         variant="contained" 
@@ -66,7 +66,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
             render: landingPage
         },{
             key: "new-arrivals",
-            background: "images/backgrounds/can-bg-col.jpg",
+            background: "images/backgrounds/vampire-spa-day.jpg",
             render: newReleases
         }
     ], [])
