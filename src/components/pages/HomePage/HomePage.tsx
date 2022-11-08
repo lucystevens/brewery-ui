@@ -26,7 +26,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
                         a quality beer that even the most ale-averse drinker
                         could enjoy as much as a beer connoisseur.
                         Since then we've grown out of the cupboard and the
-                        bucket, to some proper kit and a spare bedroom but
+                        bucket, to some proper kit and a dedicated bedroom but
                         our mission stays the same:
                     </Typography>
                     <Typography className="motto" variant={"h3"}>
@@ -45,14 +45,35 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
                         New Arrivals
                     </Typography>
                     <Typography className="subtitle" variant={"h2"}>
-                        Vampire Spa Day
+                        Beyond the Pale
+                    </Typography>
+                    <Button className="shop" 
+                        variant="contained" 
+                        color="primary" 
+                        href="/retailers">
+                        Where to buy
+                    </Button>
+                </Box>
+            </Box>
+        )
+    }
+
+    const merchDrop = () => {
+        return (
+            <Box className="homepage-container v-bottom h-right">
+                <Box className="homepage-box align-right">
+                    <Typography className="title" variant={"h1"}>
+                        T-shirt pre-orders!
+                    </Typography>
+                    <Typography className="subtitle" variant={"h2"}>
+                        10% off until Sunday with code 'PREORDER'
                     </Typography>
                     <Button className="shop" 
                         variant="contained" 
                         color="primary" 
                         href="https://shop.closetbrewingproject.co.uk"
                         target="_blank">
-                        Shop latest releases
+                        Shop merch
                     </Button>
                 </Box>
             </Box>
@@ -61,12 +82,16 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
 
     const content: Content[] = useMemo(() => [
         {
+            key: "merch-drop",
+            background: "images/backgrounds/t-shirt-bg.jpg",
+            render: merchDrop
+        },{
             key: "default",
             background: "images/backgrounds/brewery-bg-col.jpg",
             render: landingPage
         },{
             key: "new-arrivals",
-            background: "images/backgrounds/vampire-spa-day.jpg",
+            background: "images/backgrounds/beyond-the-pale.jpg",
             render: newReleases
         }
     ], [])
