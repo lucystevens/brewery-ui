@@ -1,0 +1,22 @@
+.retailers-page {
+    .page-title {
+        padding-left: 0px;
+    }
+    .page-description {
+        a {
+            text-decoration: none;
+        }
+    }
+    .retailers-by-area {
+
+        .MuiDivider-root{
+            margin-bottom: 1rem;
+        }
+        margin: 1rem 0px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+}

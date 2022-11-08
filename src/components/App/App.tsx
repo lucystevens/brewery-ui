@@ -16,6 +16,7 @@ import { usePageViews } from 'hooks/AnalyticsHook';
 import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
 import CookieBanner from './CookieBanner/CookieBanner';
 import { useConfig } from 'hooks/ApiHook';
+import RetailerPage from 'components/pages/shop/RetailerPage';
 
 function App() {
 
@@ -43,7 +44,10 @@ function App() {
                   {text: "Our Story", link: "/our-story"}
                 ]},
                 {text: "Beers", link: "/beers"},
-                {text: "Shop", link: shopLink()}
+                {text: "Shop", dropdown: [
+                  {text: "Retailers", link: "/retailers"},
+                  {text: "Merch", link: shopLink()}
+                ]},
             ]}>
               <Box display={"flex"}>
                 <a href="/">
@@ -63,6 +67,9 @@ function App() {
             </Route>
             <Route path="/our-story">
               <StoryPage/>
+            </Route>
+            <Route path="/retailers">
+              <RetailerPage/>
             </Route>
             <Route path="/shop">
               <ShopPage/>

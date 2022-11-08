@@ -1,0 +1,19 @@
+.retailer-box {
+    padding: 1rem 0.5rem;
+    border: 1px solid #aaaaaa;
+
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(55,55,55,0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(55,55,55,0.75);
+    box-shadow: 2px 2px 5px 0px rgba(55,55,55,0.75);
+
+    .icon-img {
+        background-size: contain;
+        width: 20%;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 0.5rem;
+    }
+    .info {
+        flex-grow: 1;
+    }
+}
