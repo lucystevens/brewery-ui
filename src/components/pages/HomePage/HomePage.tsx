@@ -91,7 +91,7 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
             render: landingPage
         },{
             key: "new-arrivals",
-            background: "images/backgrounds/beyond-the-pale.jpg",
+            background: "images/backgrounds/beyond-the-pale-bg.jpg",
             render: newReleases
         }
     ], [])
