@@ -1,51 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
-import Beer from 'models/Beer';
+import axios from 'axios';
 import ErrorResponse from 'models/ErrorResponse';
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import ServerResponse from '../models/ServerResponse';
-
-export const useService = <T,>(
-    makeRequest: () => Promise<AxiosResponse<ServerResponse<T>>>,
-    handleErrors: (errors: any) => void
-    ) => {
-
-    const [isLoading, setLoading] = useState(false);
-    const [data, setData] = useState<T>();
-   
-    useEffect(() => {
-        makeRequest()
-        .then(({ data }) => {
-            data.success?
-                setData(data.data):
-                handleErrors(data.errors);
-        })
-        .catch((e) => {
-            handleErrors(e);
-        })
-        .finally(() => {
-            setLoading(false);
-        });
-    }, [makeRequest, handleErrors]);
-   
-    return [{ data, isLoading }];
-  }
-
-export const useBeers = () => {
-
-    const [isLoading, setLoading] = useState(true);
-    const [beers, setBeers] = useState<Beer[]>();
-    const [error, setError] = useState<ErrorResponse>()
-
-    useEffect(() => {
-        axios.get(`/api/beer`)
-            .then(({ data }) => setBeers(data))
-            .catch(e => setError(e.response.data))
-            .finally(() => setLoading(false));
-    }, []);
-
-    return { beers, error, isLoading };
-}
 
 export const useConfig = (key: string, defaultVal: string) => {
 

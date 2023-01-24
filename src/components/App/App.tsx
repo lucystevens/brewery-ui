@@ -11,25 +11,14 @@ import BeersPage from 'components/pages/BeersPage/BeersPage';
 import StoryPage from 'components/pages/StoryPage/StoryPage';
 import Footer from 'components/Footer/Footer';
 import AgeVerificationDialog from './AgeVerificationDialog/AgeVerificationDialog';
-import ShopPage from 'components/pages/ShopPage/ShopPage';
 import { usePageViews } from 'hooks/AnalyticsHook';
 import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
 import CookieBanner from './CookieBanner/CookieBanner';
-import { useConfig } from 'hooks/ApiHook';
 import RetailerPage from 'components/pages/shop/RetailerPage';
 
 function App() {
 
   usePageViews()
-  const {value, error} = useConfig("shopEnabled", "true")
-
-  const shopEnabled = (): boolean => {
-    if(error) console.error(error)
-    return value === "true"
-  }
-
-  const shopLink = (): string => 
-    shopEnabled()? "https://shop.closetbrewingproject.co.uk/" : "/shop"
 
   return (<>
         <AgeVerificationDialog/>
@@ -46,7 +35,7 @@ function App() {
                 {text: "Beers", link: "/beers"},
                 {text: "Shop", dropdown: [
                   {text: "Retailers", link: "/retailers"},
-                  {text: "Merch", link: shopLink()}
+                  {text: "Merch", link: "https://shop.closetbrewingproject.co.uk/"}
                 ]},
             ]}>
               <Box display={"flex"}>
@@ -71,16 +60,13 @@ function App() {
             <Route path="/retailers">
               <RetailerPage/>
             </Route>
-            <Route path="/shop">
-              <ShopPage/>
-            </Route>
 
             <Route path="/cookie-policy">
               <CookiePolicy/>
             </Route>
 
             <Route path="/">
-              <HomePage shopEnabled={shopEnabled()}/>
+              <HomePage />
             </Route>
           </Switch>
         </div>

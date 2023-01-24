@@ -60,14 +60,14 @@ const RetailerPage: React.FC = () => {
         },
         {
             id: 5,
-            name: "The Beer Emporium",
-            address: "8 Welles Street, Sandbach",
-            area: "England",
-            iconUrl: "/images/retailers/beer-emporium.png",
+            name: "Cork & Cask",
+            address: "136 Marchmont Road",
+            area: "Edinburgh",
+            iconUrl: "/images/retailers/corkandcask.jpg",
             links: [
-                {type: "instagram", url: "yourbeeremporium"},
-                {type: "maps", url: "Mg2cQmtDnRAKRiFTA"},
-                {type: "website", url: "http://thebeeremporium.com"}
+                {type: "instagram", url: "corkcask"},
+                {type: "maps", url: "SefjpxDT6ZoJHemZ9"},
+                {type: "website", url: "https://corkandcask.co.uk/"}
             ]
         }
     ]

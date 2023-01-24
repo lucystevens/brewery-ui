@@ -1,5 +1,5 @@
 # build environment
-FROM node:13.12.0-alpine as build
+FROM node:18 as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 RUN apk add --update python make g++ && rm -rf /var/cache/apk/*
