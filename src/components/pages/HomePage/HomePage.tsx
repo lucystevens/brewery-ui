@@ -5,10 +5,9 @@ import Carousel from 'react-material-ui-carousel';
 import './HomePage.scss'
 
 interface HomePageProps {
-    shopEnabled: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
+const HomePage: React.FC<HomePageProps> = ({  }) => {
 
     const landingPage = () => {
         return (
@@ -63,10 +62,10 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
             <Box className="homepage-container v-bottom h-right">
                 <Box className="homepage-box align-right">
                     <Typography className="title" variant={"h1"}>
-                        T-shirt pre-orders!
+                        Merch
                     </Typography>
                     <Typography className="subtitle" variant={"h2"}>
-                        10% off until Sunday with code 'PREORDER'
+                        T-shirts available now!
                     </Typography>
                     <Button className="shop" 
                         variant="contained" 
@@ -82,18 +81,14 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
 
     const content: Content[] = useMemo(() => [
         {
-            key: "merch-drop",
-            background: "images/backgrounds/t-shirt-bg.jpg",
-            render: merchDrop
-        },{
             key: "default",
             background: "images/backgrounds/brewery-bg-col.jpg",
             render: landingPage
         },{
-            key: "new-arrivals",
-            background: "images/backgrounds/beyond-the-pale-bg.jpg",
-            render: newReleases
-        }
+            key: "merch-drop",
+            background: "images/backgrounds/t-shirt-bg.jpg",
+            render: merchDrop
+        },
     ], [])
 
     const generateContent = (content: Content): ReactNode => 
@@ -103,10 +98,11 @@ const HomePage: React.FC<HomePageProps> = ({ shopEnabled }) => {
         </div>
     </div>
     
-    return (<> { shopEnabled? <Carousel autoPlay={false} indicators={false} navButtonsProps={{className:"nav-btn", style:{}}}>
-            { content.map(generateContent) }
-        </Carousel> : generateContent(content[0]) }
-        { shopEnabled? <MailingListSignup /> : "" }
+    return (
+        <> <Carousel autoPlay={false} indicators={false} navButtonsProps={{className:"nav-btn", style:{}}}>
+                { content.map(generateContent) }
+            </Carousel>
+            <MailingListSignup />
         </>);
 
 };

@@ -22,9 +22,6 @@
     &.flipped {
         .content {
             justify-content: start;
-            .name {
-                margin-bottom: 0.5rem;
-            }
         }
     }
 
@@ -42,12 +39,18 @@
         padding: 0px;
         border-radius: 15px;
 
-        .MuiTypography-root {
-            padding: 10px;
+        .MuiTypography-root.name {
+            font-weight: 600;
+            padding: 5px;
         }
 
-        .title {
-            font-weight: 600;
+        .MuiTypography-root.style {
+            color: #666666;
+            font-style: italic;
+        }
+
+        .MuiTypography-root.description {
+            padding: 10px;
         }
 
     }
@@ -57,9 +60,6 @@
     .beer-card .content {
         .MuiTypography-root.name {
             font-size: 2rem;
-        }
-        .MuiTypography-root.style {
-            font-size: 1.5rem;
         }
     }
 }

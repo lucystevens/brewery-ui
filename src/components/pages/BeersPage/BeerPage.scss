@@ -27,10 +27,15 @@
     .subtitle {
         padding-left: 1rem;
     }
+
+    padding-bottom: 5%;
 }
 
 @media only screen and (max-width: 1200px) {
-    .beer-page .header {
-        flex-direction: column;
+    .beer-page {
+        padding-bottom: 10px;
+        .header {
+            flex-direction: column;
+        }
     }
 }
