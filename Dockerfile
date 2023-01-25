@@ -1,8 +1,8 @@
 # build environment
-FROM node:18 as build
+FROM node:14 as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-RUN apk add --update python make g++ && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y python make g++
 
 COPY package.json ./
 COPY package-lock.json ./

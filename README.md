@@ -1,5 +1,5 @@
 # brewery-ui
-Frontend ui for the CBP website
+Frontend ui for the CBP website. Uses Node v14 and npm v6
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

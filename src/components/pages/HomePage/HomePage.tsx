@@ -4,10 +4,9 @@ import React, { ReactNode, useMemo } from 'react'
 import Carousel from 'react-material-ui-carousel';
 import './HomePage.scss'
 
-interface HomePageProps {
-}
+interface HomePageProps {}
 
-const HomePage: React.FC<HomePageProps> = ({  }) => {
+const HomePage: React.FC<HomePageProps> = () => {
 
     const landingPage = () => {
         return (
@@ -36,6 +35,7 @@ const HomePage: React.FC<HomePageProps> = ({  }) => {
         )
     }
 
+    // eslint-disable-next-line
     const newReleases = () => {
         return (
             <Box className="homepage-container v-bottom h-right">

@@ -63,6 +63,13 @@
 .full-menu .menu-option .dropdown-icon {
   align-self: center;
   position: absolute;
-  top: 60px;
+  top: 80px;
+
+}
+
+@media (max-width: 1366px){
+  .full-menu .menu-option .dropdown-icon {
+    top: 60px;
+  }
 }
 
