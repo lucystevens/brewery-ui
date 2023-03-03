@@ -98,7 +98,7 @@ export const beers: Beer[] = [
             "but with a percentage that won't put you on the floor.",
         style: "Micro IPA",
         core: false,
-        hidden: true
+        untappdLink: "closet-brewing-project-size-doesn-t-matter/5229289"
      },
      {
         id: 9,
@@ -111,6 +111,6 @@ export const beers: Beer[] = [
             "The gentle malt profile gives the hops space to shine, providing a sturdy backbone for the notes of lychee, grapefruit, peach and gooseberry that make up 8 Days A Week.",
         style: "Pale Ale",
         core: false,
-        hidden: true
+        untappdLink: "closet-brewing-project-8-days-a-week/5258957"
      },
  ]
