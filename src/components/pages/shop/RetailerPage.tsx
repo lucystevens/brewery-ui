@@ -69,6 +69,29 @@ const RetailerPage: React.FC = () => {
                 {type: "maps", url: "SefjpxDT6ZoJHemZ9"},
                 {type: "website", url: "https://corkandcask.co.uk/"}
             ]
+        },
+        {
+            id: 6,
+            name: "Against The Grain",
+            address: "314 Morningside Road",
+            area: "Edinburgh",
+            iconUrl: "/images/retailers/atg.jpg",
+            links: [
+                {type: "instagram", url: "atgbeered"},
+                {type: "maps", url: "GdmapWzzYS2YtvDC7"},
+            ]
+        },
+        {
+            id: 7,
+            name: "Beer Zoo",
+            address: "219 Portobello High Street",
+            area: "Edinburgh",
+            iconUrl: "/images/retailers/beerzoo.png",
+            links: [
+                {type: "instagram", url: "beer.zoo"},
+                {type: "maps", url: "Cn4AkWAgJggihXLX6"},
+                {type: "website", url: "https://shop.beerzoo.co.uk"}
+            ]
         }
     ]
     const isLoading = false

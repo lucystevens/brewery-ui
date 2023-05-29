@@ -110,7 +110,33 @@ export const beers: Beer[] = [
             "This extra pale ale is perfect to enjoy any day of the week. " +
             "The gentle malt profile gives the hops space to shine, providing a sturdy backbone for the notes of lychee, grapefruit, peach and gooseberry that make up 8 Days A Week.",
         style: "Pale Ale",
-        core: false,
+        core: true,
         untappdLink: "closet-brewing-project-8-days-a-week/5258957"
      },
+    {
+        id: 10,
+        name: "GOAT",
+        iconUrl: "/images/beers/goat.png",
+        abv: 7.2,
+        description:
+            "Grab this dopplebock by the horns. It is a strong, malty, German lager, a full-bodied gal, and the perfect antidote for our chilly Scottish nights. " +
+            "The best time to drink this lager is in the early weeks of spring or the final weeks of autumn, " +
+            "when the sun is out and shining but you still need to wrap up in a few layers.",
+        style: "Doppelbock",
+        core: false,
+        untappdLink: "closet-brewing-project-g-o-a-t/5292866"
+    },
+    {
+        id: 11,
+        name: "More Berries Than Sense",
+        iconUrl: "/images/beers/more-berries-than-sense.png",
+        abv: 5.0,
+        description:
+            "Described by some as alcoholic berry juice, described by us as delicious. " +
+            "Think about how many berries would be sensible to add into a beer. Now double that number. " +
+            "Now add 5 and you’ll be getting close to how many berries have been added to give this beer its shocking pink colour and its tart, refreshing, fruity flavour.",
+        style: "Quadruple Berry Sour",
+        core: false,
+        untappdLink: "closet-brewing-project-more-berries-than-sense/5377010"
+    },
  ]
