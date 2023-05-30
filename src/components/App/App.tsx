@@ -15,6 +15,7 @@ import { usePageViews } from 'hooks/AnalyticsHook';
 import CookiePolicy from 'components/pages/policies/CookiePolicy/CookiePolicy';
 import CookieBanner from './CookieBanner/CookieBanner';
 import RetailerPage from 'components/pages/shop/RetailerPage';
+import EventsPage from "../pages/EventsPage/EventsPage";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                   {text: "Our Story", link: "/our-story"}
                 ]},
                 {text: "Beers", link: "/beers"},
+                {text: "Events", link: "/events"},
                 {text: "Shop", dropdown: [
                   {text: "Retailers", link: "/retailers"},
                   {text: "Merch", link: "https://shop.closetbrewingproject.co.uk/"}
@@ -51,6 +53,9 @@ function App() {
             <Route path="/beers">
               <BeersPage/>
             </Route>
+          <Route path="/events">
+              <EventsPage/>
+          </Route>
             <Route path="/meet-the-team">
               <TeamPage/>
             </Route>

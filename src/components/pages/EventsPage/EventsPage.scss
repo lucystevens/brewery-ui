@@ -1,0 +1,57 @@
+.events-page {
+
+    .page-description{
+        padding: 0 0 1rem 1rem;
+        font-size: 1.5rem;
+    }
+
+    .events {
+        width: 100%;
+        .event {
+            transform: skew(30deg);
+            margin: 10px;
+
+            .event-content {
+                flex-direction: row;
+                display: flex;
+                transform: skew(-30deg);
+                color: white;
+                justify-content: space-between;
+                width: 80%;
+                padding: 10px 10%;
+
+                .event-details {
+                    .title {
+                        text-transform: uppercase;
+                        font-family: "Crossfit-Bold", 'Oswald', sans-serif;
+                    }
+
+                    .description {
+                        font-size: 1.5rem;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                }
+
+                .event-date {
+                    align-items: center;
+                    justify-content: center;
+                    text-transform: uppercase;
+                    display: flex;
+                    flex-direction: column;
+                    .MuiTypography-root{
+                        font-family: "Oswald Heavy", 'Oswald', sans-serif;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .events-page .events .event .event-content .event-details .description {
+        font-size: 1rem;
+    }
+}
